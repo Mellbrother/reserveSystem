@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reserve;
 
 class ReserveController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +16,7 @@ class ReserveController extends Controller
      */
     public function index()
     {
-        //
+        return view('shop.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class ReserveController extends Controller
      */
     public function create()
     {
-        //
+        return view('reserve.create');
     }
 
     /**
@@ -34,7 +37,12 @@ class ReserveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $this->validate($request, Reserve::$rules);
+        $reserve = new Reserve;
+        unset($form['_token']);
+        $reserve->fill($form)->save();
+        return redirect('/reserve');
     }
 
     /**
@@ -45,7 +53,8 @@ class ReserveController extends Controller
      */
     public function show($id)
     {
-        //
+        $reserve = Reserve::find($id);
+        return view('reserve.show', ['reserve' => $reserve]);
     }
 
     /**
@@ -56,7 +65,8 @@ class ReserveController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reserve = Reserve::find($id);
+        return view('reserve.edit', ['reserve' => $reserve]);
     }
 
     /**
@@ -68,7 +78,11 @@ class ReserveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, Reserve::$rules);
+        $reserve = Reserve::find($id);
+        unset($form['_token']);
+        $reserve->fill($form)->save();
+        return redirect('/reserve');
     }
 
     /**
@@ -79,6 +93,7 @@ class ReserveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Reserve::find($id)->delete();
+        return redirect('/reserve');
     }
 }
