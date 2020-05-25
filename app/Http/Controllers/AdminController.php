@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reserve;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -13,16 +15,16 @@ class AdminController extends Controller
     
     public function findReserveByShopId(Request $request)
     {
-        $item = Reserve::shopId($request->input)->get();
-        $param = ['input' => $request->input, 'item' => $item];
+        $items = Reserve::shopId($request->input)->get();
+        $param = ['input' => $request->input, 'item' => $items];
         // リダイレクト先未定
         return view('admin.reserve_by_shopId', $param);
     }
     
     public function destroyReserve(Request $request)
     {
-        // 削除するReserveをどう指定するか？
-        Reserve::find($request->input)->delete();
+        // "checkbox"はチェックされた予約の配列
+        Reserve::destroy($request->checkbox);
         // リダイレクト先未定
         return redirect('/');
     }
@@ -40,7 +42,7 @@ class AdminController extends Controller
         $user = User::find($request->id);
         $form = $request->all();
         unset($form['_token ']);
-        $person->fill($form)->save();
+        $user->fill($form)->save();
         // リダイレクト先未定
         return redirect('/');
     }
@@ -63,7 +65,7 @@ class AdminController extends Controller
         $tag = new Tag;
         $form = $request->all();
         unset($form['_token']);
-        $person->fill($form)->save();
+        $user->fill($form)->save();
         // リダイレクト先未定
         return redirect('/');
     }
