@@ -13,36 +13,44 @@ class CustomerController extends Controller
         return view('customer.home');
     }
 
-    public function showSearchResult(Request, $request)
+    public function showSearchResult(Request $request)
     {
 
-        $shops = Shop::lunchMinPrice($request->lunchmin)
-                    ->lunchMaxPrice($request->lunchmax)
-                    ->dinnerMinPrice($request->dinnermin)
-                    ->dinnerMaxPrice($request->dinnermax)
-                    ->Station($request->station)->get();
+        $shops = Shop::where('name', $request->name)->get();
 
-        $param = ['input' => $request->input, 'shops' => $shops];
-        return view('customer.searchRresult', $param);
+        // $shops = Shop::lunchMinPrice($request->lunchmin)
+        //             ->lunchMaxPrice($request->lunchmax)
+        //             ->dinnerMinPrice($request->dinnermin)
+        //             ->dinnerMaxPrice($request->dinnermax)
+        //             ->Station($request->station)->get();
+
+        $param = ['name' => $request->name, 'shops' => $shops];
+        return view('customer.search_result', $param);
     }
 
     public function showShopDetail($id, $shop_id)
     {
-        $detail = Shop:where('id', 'shop_id')->first();
-        return view('customer.shopDetail', ['detail' => $detail]);
+        $shop = Shop::where('id', $shop_id)->first();
+        return view('customer.shop_detail', ['shop' => $shop]);
     }
 
-    public function showReservePage($id)
+    public function showReservePage($id, $shop_id)
     {
-        return view('customer.reserve');
+        return view('customer.reserve', ["id" => $id, "shop_id" => $shop_id]);
     }
 
-    public function reserve(Request $request)
+    public function reserve(Request $request, $id, $shop_id)
     {
         $this->validate($request, Reserve::$rules);
-        $reserve = new reserve;
+        $reserve = new Reserve;
+        $tmp = [
+                'customer_id' => $id,
+                'shop_id'     => $shop_id,
+            ];
+        $form = $request->all() + $tmp;
+            
         unset($form['_token']);
         $reserve->fill($form)->save();
-        return redirect('/customer.reserve');
+        return redirect('/tag');
     }
 }

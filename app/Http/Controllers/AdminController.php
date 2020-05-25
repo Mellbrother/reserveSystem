@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reserve;
 use App\User;
+use App\Tag;
 
 class AdminController extends Controller
 {
-    public function home()
+    public function home($id)
     {
-        return view('admin.home');
+        return view('admin.home', ['id' => $id]);
     }
     
-    public function findReserveByShopId(Request $request)
+    public function findReserveByShopId(Request $request, $id)
     {
-        $items = Reserve::shopId($request->input)->get();
-        $param = ['input' => $request->input, 'item' => $items];
+        $items = Reserve::where('shop_id', $request->shop_id)->get();
+        $param = ['shop_id' => $request->shop_id, 'items' => $items, 'id' => $id];
         return view('admin.reserve_by_shopId', $param);
     }
     
@@ -24,14 +25,14 @@ class AdminController extends Controller
     {
         // "checkbox"はチェックされた予約の配列
         Reserve::destroy($request->checkbox);
-        return redirect('/admin/{{$id}}/findReserve');
+        return redirect('/admin/'.$id.'/findReserve');
     }
     
-    public function userEdit(Request $request)
+    public function userEdit(Request $request, $id)
     {
         // 編集するユーザーをどう指定するか？
-        $user = User::find($request->input);
-        return view('admin.user_edit', ['form' => $user]);
+        $user = User::find($request->user_id);
+        return view('admin.user_edit', ['form' => $user, 'id' => $id]);
     }
     
     public function userUpdate(Request $request, $id)
@@ -41,18 +42,18 @@ class AdminController extends Controller
         $form = $request->all();
         unset($form['_token ']);
         $user->fill($form)->save();
-        return redirect('/admin/{{$id}}/home');
+        return redirect('/admin/'.$id.'/home');
     }
     
     public function userDelete(Request $request, $id)
     {
         User::find($request->id)->delete();
-        return redirect('/admin/{{$id}}/home');
+        return redirect('/admin/'.$id.'/home');
     }
     
-    public function createTag()
+    public function createTag($id)
     {
-        return view('admin.tag_create');
+        return view('admin.tag_create', ['id' => $id]);
     }
     
     public function storeTag(Request $request, $id)
@@ -61,7 +62,7 @@ class AdminController extends Controller
         $tag = new Tag;
         $form = $request->all();
         unset($form['_token']);
-        $user->fill($form)->save();
-        return redirect('/admin/{{$id}}/createTag');
+        $tag->fill($form)->save();
+        return redirect('/admin/'.$id.'/createTag');
     }
 }

@@ -8,14 +8,14 @@
 
 @section('content')
 <table>
-    <tr><th>id</th><th>name</th><th>place_address</th>
-        <th>lunch_rice</th><th>dinner_price</th></tr>
+    <tr><th>id</th><th>customer_id</th><th>shop_id</th>
+        <th>datetime</th><th>people_num</th></tr>
     @foreach($items as $item)
         <tr><td>{{$item->id}}</td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->place_address}}</td>
-            <td>{{$item->lunch_price}}</td>
-            <td>{{$item->dinner_price}}</td>
+            <td>{{$item->customer_id}}</td>
+            <td>{{$item->shop_id}}</td>
+            <td>{{$item->datetime}}</td>
+            <td>{{$item->people_num}}</td>
         </tr>
     @endforeach
 </table>

@@ -12,7 +12,7 @@ class ReservesTableSeeder extends Seeder
      */
     public function run()
     {
-      $param[
+      $param=[
         'customer_id' => 2,
         'shop_id' => 1,
         'datetime' => '2020-05-30 18:00:00',
@@ -20,7 +20,7 @@ class ReservesTableSeeder extends Seeder
       ];
       DB::table('reserves')->insert($param);
 
-      $param[
+      $param=[
         'customer_id' => 3,
         'shop_id' => 1,
         'datetime' => '2020-06-03 11:30:00',
@@ -28,12 +28,12 @@ class ReservesTableSeeder extends Seeder
       ];
       DB::table('reserves')->insert($param);
 
-      $param[
+      $param=[
         'customer_id' => 5,
         'shop_id' => 3,
         'datetime' => '2020-05-28 20:00:00',
         'people_num' => 7
       ];
-      DB::table('reseves')->insert($param);
+      DB::table('reserves')->insert($param);
     }
 }

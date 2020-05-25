@@ -12,39 +12,39 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-      $param[
+      $param=[
         'name' => '居酒屋',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '和食',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '韓国料理',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '安い',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '駅チカ',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '個室',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
 
-      $param[
+      $param=[
         'name' => '女子会',
       ];
-      DB::table('shops')->insert($param);
+      DB::table('tags')->insert($param);
     }
 }

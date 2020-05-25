@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
+
+    protected $guarded = array('id');
+
+    public static $rules = array(
+      'name' => 'required'
+    );
+
     public function scopeLunchMinPrice($query, $price){
       return $query->where('lunch_price', '>=', $price);
     }
@@ -28,6 +35,6 @@ class Shop extends Model
 
     public function tags(){
       //belongsToManyの処理
-      return $this->belongsToMany('App\Tag', 'shop_tag', 'tag_id', 'shop_id')
+      return $this->belongsToMany('App\Tag', 'shop_tag', 'tag_id', 'shop_id');
     }
 }

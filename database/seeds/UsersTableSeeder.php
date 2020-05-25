@@ -15,7 +15,8 @@ class UsersTableSeeder extends Seeder
 
       for($i = 1; $i <= 15; $i++){
         $param=[
-          'email' => 'id$i@gmail.com',
+          'name' => '',
+          'email' => 'id'.$i.'@gmail.com',
           'password' => 'password',
         ];
         DB::table('users')->insert($param);

@@ -18,7 +18,7 @@
         <tr><th>seat_num</th><td><input type="number" name="seat_num"></td></tr>
         <tr><th>open</th><td><input type="string" name="open"></td></tr>
         <tr><th>close</th><td><input type="string" name="close"></td></tr>
-        <tr><th>average_stay_time</th><td><input type="number" name="average_stay_time"></td></tr>
+        <tr><th>average_stay_time</th><td><input type="number" name="average_stay_minute"></td></tr>
         <tr><th>station</th><td><input type="string" name="station"></td></tr>
         <tr><th>walk_minute</th><td><input type="number" name="walk_minute"></td></tr>
     </table>
