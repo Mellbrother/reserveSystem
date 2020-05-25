@@ -16,7 +16,8 @@
   @foreach($shops as $shop)  
     <tr>
       <td>{{$shop->id}}</td>
-      <td>{{$shop->name}}</td>
+      <td><a href="http://localhost:8000/customer/{{$id}}/reserve/{{$shop->id}}">
+        {{$shop->name}}</a></td>
       <td>{{$shop->place_address}}</td>
       <td>{{$shop->open}}</td>
       <td>{{$shop->close}}</td>

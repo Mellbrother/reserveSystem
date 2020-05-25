@@ -13,7 +13,7 @@ class CustomerController extends Controller
         return view('customer.home');
     }
 
-    public function showSearchResult(Request $request)
+    public function showSearchResult(Request $request, $id)
     {
 
         $shops = Shop::where('name', $request->name)->get();
@@ -24,7 +24,7 @@ class CustomerController extends Controller
         //             ->dinnerMaxPrice($request->dinnermax)
         //             ->Station($request->station)->get();
 
-        $param = ['name' => $request->name, 'shops' => $shops];
+        $param = ['name' => $request->name, 'shops' => $shops, 'id' => $id];
         return view('customer.search_result', $param);
     }
 
@@ -41,16 +41,14 @@ class CustomerController extends Controller
 
     public function reserve(Request $request, $id, $shop_id)
     {
+
         $this->validate($request, Reserve::$rules);
         $reserve = new Reserve;
-        $tmp = [
-                'customer_id' => $id,
-                'shop_id'     => $shop_id,
-            ];
-        $form = $request->all() + $tmp;
-            
+        
+        $form = $request->all();
+        $form += ['customer_id' => $id, 'shop_id' => $shop_id];   
         unset($form['_token']);
         $reserve->fill($form)->save();
-        return redirect('/tag');
+        return redirect('/customer/'.$id.'/home');
     }
 }
