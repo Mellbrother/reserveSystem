@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    //
+    protected $guarded = array('id');
+    
+    public static $rules = array(
+        'user_id' => 'integer|required',
+        'name' => 'string|required',
+    );
+    
+    public function getData()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
