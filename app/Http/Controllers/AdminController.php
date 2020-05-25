@@ -17,16 +17,14 @@ class AdminController extends Controller
     {
         $items = Reserve::shopId($request->input)->get();
         $param = ['input' => $request->input, 'item' => $items];
-        // リダイレクト先未定
         return view('admin.reserve_by_shopId', $param);
     }
     
-    public function destroyReserve(Request $request)
+    public function destroyReserve(Request $request, $id)
     {
         // "checkbox"はチェックされた予約の配列
         Reserve::destroy($request->checkbox);
-        // リダイレクト先未定
-        return redirect('/');
+        return redirect('/admin/{{$id}}/findReserve');
     }
     
     public function userEdit(Request $request)
@@ -36,22 +34,20 @@ class AdminController extends Controller
         return view('admin.user_edit', ['form' => $user]);
     }
     
-    public function userUpdate(Request $request)
+    public function userUpdate(Request $request, $id)
     {
         $this->validate($request, User::$rules);
         $user = User::find($request->id);
         $form = $request->all();
         unset($form['_token ']);
         $user->fill($form)->save();
-        // リダイレクト先未定
-        return redirect('/');
+        return redirect('/admin/{{$id}}/home');
     }
     
-    public function userDelete(Request $request)
+    public function userDelete(Request $request, $id)
     {
         User::find($request->id)->delete();
-        // リダイレクト先未定
-        return redirect('/');
+        return redirect('/admin/{{$id}}/home');
     }
     
     public function createTag()
@@ -59,14 +55,13 @@ class AdminController extends Controller
         return view('admin.tag_create');
     }
     
-    public function storeTag(Request $request)
+    public function storeTag(Request $request, $id)
     {
         $this->validate($request, Tag::$rules);
         $tag = new Tag;
         $form = $request->all();
         unset($form['_token']);
         $user->fill($form)->save();
-        // リダイレクト先未定
-        return redirect('/');
+        return redirect('/admin/{{$id}}/createTag');
     }
 }
