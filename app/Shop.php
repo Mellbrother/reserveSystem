@@ -35,6 +35,6 @@ class Shop extends Model
 
     public function tags(){
       //belongsToManyの処理
-      return $this->belongsToMany('App\Tag', 'shop_tag', 'tag_id', 'shop_id');
+      return $this->belongsToMany('App\Tag', 'shop_tag');
     }
 }

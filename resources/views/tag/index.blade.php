@@ -15,6 +15,25 @@
         </tr>
     @endforeach
 </table>
+
+<table>
+    <tr><th>id</th><th>name</th></tr>
+    @foreach($shops as $shop)
+        <tr><td>{{$shop->id}}</td>
+            <td>{{$shop->name}}</td>
+        </tr>
+    @endforeach
+</table>
+
+<table>
+    <tr><th>id</th><th>name</th></tr>
+    @foreach($tags as $tag)
+        <tr><td>{{$tag->id}}</td>
+            <td>{{$tag->name}}</td>
+        </tr>
+    @endforeach
+</table>
+
 @endsection
 
 @section('footer')
