@@ -22,8 +22,8 @@ Route::resource('reserve', 'ReserveController');
 Route::resource('tag', 'TagController');
 
 Route::get('/customer/{id}/home', 'CustomerController@home');
-Route::get('/customer/{id}/serchResult', 'CustomerController@showSearchResult');
-Route::get('/customer/{id}/clerkDatail', 'CustomerController@showShopDetail');
+Route::get('/customer/{id}/searchResult', 'CustomerController@showSearchResult');
+Route::get('/customer/{id}/shopDatail', 'CustomerController@showShopDetail');
 Route::get('/customer/{id}/reserve', 'CustomerController@showReservePage');
 Route::post('/customer/{id}/reserve', 'CustomerController@reserve');
 
@@ -40,4 +40,3 @@ Route::post('/admin/{id}/userUpdate', 'AdminController@userUpdate');
 Route::post('/admin/{id}/userDelete', 'AdminController@userDelete');
 Route::get('/admin/{id}/createTag', 'AdminController@createTag');
 Route::post('/admin/{id}/storeTag', 'AdminController@storeTag');
-
