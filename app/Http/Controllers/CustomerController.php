@@ -19,9 +19,9 @@ class CustomerController extends Controller
         return view('customer.searchRresult', ['search' => $serach]);
     }
 
-    public function shop_detail($id)
+    public function shop_detail($id, $shop_id)
     {
-        $detail = Detail:where('name', 'place_address', 'lunchPrice', 'dinnerPrice', 'holiday')->get();
+        $detail = Shop:where('id', 'shop_id')->first();
         return view('customer.shopDetail', ['detail' => $detail]);
     }
 
