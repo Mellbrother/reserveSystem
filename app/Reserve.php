@@ -13,8 +13,8 @@ class Reserve extends Model
     	// datetimeが未来の時間か
     	// datetimeの型
     	// people_numのmax
-    	'customer_id' => 'integer|required',
-    	'shop_id'    => 'integer|required',
+    	'customer_id' => 'integer',
+    	'shop_id'    => 'integer',
     	'datetime'    => 'required',
     	'people_num'  => 'min:1|required',
     );

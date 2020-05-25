@@ -24,8 +24,9 @@ Route::resource('tag', 'TagController');
 Route::get('/customer/{id}/home', 'CustomerController@home');
 Route::post('/customer/{id}/searchResult', 'CustomerController@showSearchResult');
 Route::get('/customer/{id}/shop/{shop_id}', 'CustomerController@showShopDetail');
+Route::post('/customer/{id}/reserve/shop/{shop_id}', 'CustomerController@reserve');
 Route::get('/customer/{id}/reserve/{shop_id}', 'CustomerController@showReservePage');
-Route::post('/customer/{id}/reserve/{shop_id}', 'CustomerController@reserve');
+
 
 
 Route::get('/clerk/{id}/home', 'ClerkController@home');

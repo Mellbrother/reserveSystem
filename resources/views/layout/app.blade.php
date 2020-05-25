@@ -9,7 +9,7 @@
 		.category{margin: 50px; padding: 0px;}
 
 	</style>
-	<script type="text/javascript" src="js/category.js"></script>
+	
 	<title>仮レイアウト</title>
 </head>
 <body>
