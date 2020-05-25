@@ -13,16 +13,28 @@ class CustomerController extends Controller
         return view('customer.home');
     }
 
-    public function search_resuit($id)
+    public function showSearchResult(Request, $request)
     {
-        $search = Search::where('')->get();
-        return view('customer.searchRresult', ['search' => $serach]);
+
+        $shops = Shop::lunchMinPrice($request->lunchmin)
+                    ->lunchMaxPrice($request->lunchmax)
+                    ->dinnerMinPrice($request->dinnermin)
+                    ->dinnerMaxPrice($request->dinnermax)
+                    ->Station($request->station)->get();
+
+        $param = ['input' => $request->input, 'shops' => $shops];
+        return view('customer.searchRresult', $param);
     }
 
-    public function shop_detail($id, $shop_id)
+    public function showShopDetail($id, $shop_id)
     {
         $detail = Shop:where('id', 'shop_id')->first();
         return view('customer.shopDetail', ['detail' => $detail]);
+    }
+
+    public function showReservePage($id)
+    {
+        return view('customer.reserve');
     }
 
     public function reserve(Request $request)
@@ -32,10 +44,5 @@ class CustomerController extends Controller
         unset($form['_token']);
         $reserve->fill($form)->save();
         return redirect('/customer.reserve');
-    }
-
-    public function layout($id)
-    {
-
     }
 }
