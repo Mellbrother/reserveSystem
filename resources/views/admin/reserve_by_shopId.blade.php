@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <form action = "admin/{{$id}}/destroyReserve" method="post">
+    <form action = "/admin/{{$id}}/destroyReserve" method="post">
     <table>
     @csrf
     <tr><th>時間順</th><th>お客の人数</th></tr>
@@ -9,7 +9,7 @@
         <tr>
             <td>{{$item->datetime}}</td>
             <td>{{$item->people_num}}</td>
-            <td><input type="checkbox" name="checkbox" value="{{$item->id}}"</td>
+            <td><input type="checkbox" name="checkbox[]" value="{{$item->id}}"></td>
         </tr>
     @endforeach
     </table>

@@ -11,17 +11,12 @@
 	</style>
 	<script type="text/javascript" src="js/category.js"></script>
 	<title>仮レイアウト</title>
-
-
 </head>
-
-
-
 <body>
 	@section('navbar')
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="navbar-nav">
-			<a type="button" class="nav-item nav-link active" onClick="location.href='/'">Todoアプリ</a>
+			<a type="button" class="nav-item nav-link active" onClick="location.href='/'">予約アプリ</a>
 		</div>
 	</nav>
 

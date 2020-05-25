@@ -1,16 +1,11 @@
-@extends('layouts.helloapp')
+@extends('layout.app')
 
-@section('title', 'customer.reserve');
-
-@section('menubar')
-  @parent
-  予約画面
 @section('content')
-<form class="content" action="customer.home" method="post">
+<form action="/customer/{{$id}}/r/{{$shop_id}}" method="post">
   @csrf
   <input type="button" value="カレンダー">
-  <input type="number" value="人数">
-  <input type="datetime" value="時間">
+  <input type="number" value="人数" name="people_num">
+  <input type="datetime" value="時間" name="datetime">
   <input type="button" value="確認">
   <input type="submit" value="予約">
 </form>

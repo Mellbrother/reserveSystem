@@ -12,7 +12,7 @@ class ShopsTableSeeder extends Seeder
      */
     public function run()
     {
-        $param[
+        $param=[
           'clerk_id' => 1,
           'name' => 'shop1',
           'place_address' => '千葉県山武市松尾町猿尾585-15',
@@ -27,7 +27,7 @@ class ShopsTableSeeder extends Seeder
         ];
         DB::table('shops')->insert($param);
 
-        $param[
+        $param=[
           'clerk_id' => 2,
           'name' => 'shop2',
           'place_address' => '千葉県山武市松尾町猿尾585-15',
@@ -42,7 +42,7 @@ class ShopsTableSeeder extends Seeder
         ];
         DB::table('shops')->insert($param);
 
-        $param[
+        $param=[
           'clerk_id' => 3,
           'name' => 'shop3',
           'place_address' => '広島県三次市作木町大山48-18',
@@ -57,7 +57,7 @@ class ShopsTableSeeder extends Seeder
         ];
         DB::table('shops')->insert($param);
 
-        $param[
+        $param=[
           'clerk_id' => 4,
           'name' => 'shop4',
           'place_address' => '沖縄県国頭郡国頭村伊地570-11',
@@ -72,7 +72,7 @@ class ShopsTableSeeder extends Seeder
         ];
         DB::table('shops')->insert($param);
 
-        $param[
+        $param=[
           'clerk_id' => 5,
           'name' => 'shop5',
           'place_address' => '静岡県沼津市内浦重須866-8',

@@ -1,10 +1,5 @@
-@extends('layouts.helloapp')
+@extends('layout.app')
 
-@section('title', 'customer.search_result');
-
-@section('menubar')
-  @parent
-  指定した店の予約画面
 @section('content')
 <table>
   <tr>
@@ -13,9 +8,9 @@
       <th>place_address</th>
   </tr>
   <tr>
-      <td>{{item->id}}</td>
-      <td>{{item->name}}</td>
-      <td>{{item->place_address}}</td>
+      <td>{{$shop->id}}</td>
+      <td>{{$shop->name}}</td>
+      <td>{{$shop->place_address}}</td>
   </tr>
 </table>
 @endsection

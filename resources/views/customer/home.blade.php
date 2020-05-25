@@ -1,14 +1,9 @@
-@extends('layouts.helloapp')
+@extends('layout.app')
 
-@section('title', 'customer.home');
-
-@section('menubar')
-  @parent
-  ホーム画面
 @section('content')
-<form class="content" action="customer.home" method="post">
+<form class="content" action="searchResult" method="post">
   @csrf
-  <input type="text" value="店名検索">
+  <input type="text" value="店名検索" name="name">
   <input type="submit" value="送信">
   <input type="button" value="場所">
   <input type="button" value="ジャンル">
