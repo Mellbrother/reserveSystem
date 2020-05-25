@@ -14,7 +14,7 @@ class ClerkController extends Controller
 
     public function showReserve($id){
     	$reserves = Reserve::where('clerk_id', $id)->get();
-    	return view('clerk.reserv', ['reserves' => $reserves]);
+    	return view('clerk.reserve', ['reserves' => $reserves]);
     }
 
     public function shopCreate($id){
