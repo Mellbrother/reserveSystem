@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clerk extends Model
 {
-    protected $guarded = arrya('id');
+    protected $guarded = array('id');
 
-    public static $rules = arrya(
+    public static $rules = array(
     	// idが存在しているかのcheck
     	// nameの制限
     	'user_id' => 'integer|required',
@@ -18,5 +18,10 @@ class Clerk extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
+    }
+
+    public function shop()
+    {
+        return $this->hasOne('App\Shop');
     }
 }
