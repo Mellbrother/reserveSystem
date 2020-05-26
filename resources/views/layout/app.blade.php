@@ -7,7 +7,8 @@
 		.content{margin:0px 0px; text-align:left;}
 		li{list-style-type: none; display: inline-block; margin-right: 50px; }
 		.category{margin: 50px; padding: 0px;}
-
+		.mgr-20{margin-left: 20px;}
+		.mgr-40{margin-left: 40px;}
 	</style>
 	
 	<title>仮レイアウト</title>
