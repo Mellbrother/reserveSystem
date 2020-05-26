@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tag;
-
+use App\Shop;
 class TagController extends Controller
 {
-    
+
     public function index()
     {
-        return view('tag.index');
+      //belongsToManyの確認
+      $items = Tag::all();
+      $tag = Tag::find(6);
+      $shops = $tag->shops;
+      $shop = Shop::find(2);
+      $tags = $shop->tags;
+        return view('tag.index', ['shops' => $shops, 'items' => $items, 'tags' => $tags]);
     }
 
     public function create()
