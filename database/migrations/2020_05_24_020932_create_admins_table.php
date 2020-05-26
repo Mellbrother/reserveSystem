@@ -18,6 +18,11 @@ class CreateAdminsTable extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->timestamps();
+                       
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
