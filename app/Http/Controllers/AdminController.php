@@ -9,11 +9,13 @@ use App\Tag;
 
 class AdminController extends Controller
 {
+    //adminのホーム
     public function home($id)
     {
         return view('admin.home', ['id' => $id]);
     }
     
+    //ショップをID検索
     public function findReserveByShopId(Request $request, $id)
     {
         $items = Reserve::where('shop_id', $request->shop_id)->get();
@@ -21,6 +23,7 @@ class AdminController extends Controller
         return view('admin.reserve_by_shopId', $param);
     }
     
+    //予約の削除
     public function destroyReserve(Request $request, $id)
     {
         // "checkbox"はチェックされた予約の配列
@@ -28,13 +31,14 @@ class AdminController extends Controller
         return redirect('/admin/'.$id.'/findReserve');
     }
     
+    //ユーザーの編集画面に飛ぶ
     public function userEdit(Request $request, $id)
     {
-        // 編集するユーザーをどう指定するか？
         $user = User::find($request->user_id);
         return view('admin.user_edit', ['form' => $user, 'id' => $id]);
     }
     
+    //ユーザー情報の更新
     public function userUpdate(Request $request, $id)
     {
         $this->validate($request, User::$rules);
@@ -45,24 +49,33 @@ class AdminController extends Controller
         return redirect('/admin/'.$id.'/home');
     }
     
+    //ユーザー情報の削除
     public function userDelete(Request $request, $id)
     {
         User::find($request->id)->delete();
         return redirect('/admin/'.$id.'/home');
     }
     
-    public function createTag($id)
+    //タグの追加画面に飛ぶ
+    public function createTag(Request $request, $id)
     {
-        return view('admin.tag_create', ['id' => $id]);
+        $sesdata = $request->session()->get('msg');
+        return view('admin.tag_create', ['id' => $id, 'session_data' => $sesdata]);
     }
     
+    //タグの追加を行う
     public function storeTag(Request $request, $id)
     {
+        $msg = $request->name;
+        
         $this->validate($request, Tag::$rules);
         $tag = new Tag;
         $form = $request->all();
         unset($form['_token']);
         $tag->fill($form)->save();
+        
+        $request->session()->put('msg', $msg);
+        
         return redirect('/admin/'.$id.'/createTag');
     }
 }
