@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-      for($i = 1; $i <= 15; $i++){
+      for($i = 1; $i <= 16; $i++){
         $param=[
           'name' => '',
           'email' => 'id'.$i.'@gmail.com',
