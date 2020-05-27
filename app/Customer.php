@@ -17,4 +17,9 @@ class Customer extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function shop()
+    {
+        return $this->hasOne('App\Shop');
+    }
 }
