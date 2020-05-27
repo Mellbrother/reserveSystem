@@ -20,9 +20,10 @@
 
 <p>カレンダー</p>
 <p>写真</p>
-<form class="content" action="reserve/shop/{shop_id}" method="post">
-  <input type="button" name="resrve" value="予約"></button>
-</form>
+<input class="btn btn-danger" type="button"
+onClick="location.href='http://www.localhost:8000/customer/{id}/reserve/shop/{shop_id}'" value="予約一覧"
+style="position: relative; left: 800px;
+width: 100px; height: 35px;">
 @endsection
 
 @section('footer')
