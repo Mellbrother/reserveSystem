@@ -12,9 +12,5 @@ class Admin extends Model
         'user_id' => 'integer|required',
         'name' => 'string|required',
     );
-    
-    public function getData()
-    {
-        return $this->belongsTo('App\User');
-    }
+
 }

@@ -13,8 +13,4 @@ class Customer extends Model
         'name' => 'string|require',
     );
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
 }
