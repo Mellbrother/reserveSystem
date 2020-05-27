@@ -10,6 +10,7 @@
   <input type="button" value="値段">
   <input type="submit" value="検索">
 </form>
+
 @endsection
 
 @section('footer')

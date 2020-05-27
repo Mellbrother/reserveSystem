@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 use App\Shop;
 use App\Reserve;
 
+//Authを利用
+use Illuminate\Support\Facades\Auth;
+
 class CustomerController extends Controller
 {
     public function home($id)
     {
+      if(Auth::check()){
         return view('customer.home');
+      }else{
+        return view('auth/login');
+      }
     }
 
     public function showSearchResult(Request $request, $id)
@@ -44,9 +51,9 @@ class CustomerController extends Controller
 
         $this->validate($request, Reserve::$rules);
         $reserve = new Reserve;
-        
+
         $form = $request->all();
-        $form += ['customer_id' => $id, 'shop_id' => $shop_id];   
+        $form += ['customer_id' => $id, 'shop_id' => $shop_id];
         unset($form['_token']);
         $reserve->fill($form)->save();
         return redirect('/customer/'.$id.'/home');

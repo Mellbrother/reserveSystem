@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
+    public const INDEX = '/';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -33,6 +34,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+
     }
 
     /**
