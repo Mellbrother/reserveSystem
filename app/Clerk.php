@@ -15,6 +15,7 @@ class Clerk extends Model
     	'name'    => 'string|required',
     );
 
+
     public function user()
     {
     	return $this->belongsTo('App\User');
