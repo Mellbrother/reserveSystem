@@ -17,14 +17,12 @@ class CustomerController extends Controller
         $tags = Tag::all();
         $stations = Station::all();
         $shops = Shop::all();
-        $prices = Shop::find($request->lunch_price);
 
         $param = [
           'tags' => $tags,
           'id' => $id,
           'stations' => $stations,
           'shops' => $shops,
-          'prices' => $prices
         ];
         return view('customer.home', $param);
       }
@@ -32,17 +30,24 @@ class CustomerController extends Controller
     public function showSearchResult(Request $request, $id)
     {
 
+      if ($request->name != null){
         $shops = Shop::where('name', $request->name)->get();
-
-        $shops = Shop::lunchMinPrice($request->lunchmin)
-                    ->lunchMaxPrice($request->lunchmax)
-                    ->dinnerMinPrice($request->dinnermin)
-                    ->dinnerMaxPrice($request->dinnermax)
-                    ->Station($request->station)->get();
+      } else {
+        // $result = [];
+        $shops = Shop::station($request->station);
+        if($request->price != ""){
+          preg_match('/(\d+)~(\d+)/', $request->price, $result);
+          $min_price = $result[1];
+          $max_price = $result[2];
+          $shops = $shops->lunchMinPrice($min_price)
+                      ->lunchMaxPrice($max_price);
+        }
+        $shops = $shops->get();
+      }
 
         $param = ['name' => $request->name, 'shops' => $shops, 'id' => $id];
         return view('customer.search_result', $param);
-    }
+     }
 
     public function showShopDetail($id, $shop_id)
     {

@@ -29,9 +29,11 @@ class Shop extends Model
       return $query->where('dinner_price', '<=', $price);
     }
 
-    public function scopeStation($query, $serch_station){
-      return $query->where('station', $serch_station);
+    public function scopeStation($query, $search_station){
+      return $query->where('station', $search_station);
     }
+
+
 
     public function tags(){
       //belongsToManyの処理
