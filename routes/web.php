@@ -35,7 +35,7 @@ Route::get('/clerk/{id}/shopCreate', 'ClerkController@shopCreate');
 Route::post('/clerk/{id}/shopStore', 'ClerkController@shopStore');
 
 Route::get('/admin/{id}/home', 'AdminController@home');
-Route::post('/admin/{id}/findReserve', 'AdminController@findReserveByShopId');
+Route::get('/admin/{id}/findReserve', 'AdminController@findReserveByShopId');
 Route::post('/admin/{id}/destroyReserve', 'AdminController@destroyReserve');
 Route::post('/admin/{id}/userEdit', 'AdminController@userEdit');
 Route::post('/admin/{id}/userUpdate', 'AdminController@userUpdate');
