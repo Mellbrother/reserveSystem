@@ -54,6 +54,10 @@ label:hover {
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <script>
 
 (function() {
@@ -109,7 +113,7 @@ $(function() {
 		.mgr-20{margin-left: 20px;}
 		.mgr-40{margin-left: 40px;}
 	</style>
-	
+
 
 	<title>仮レイアウト</title>
 </head>
@@ -119,6 +123,15 @@ $(function() {
 		<div class="navbar-nav">
 			<a type="button" class="nav-item nav-link active" onClick="location.href='/'">予約アプリ</a>
 		</div>
+
+{{-- 認証機能テストのための追記--}}
+		<a href={{ route('customer.logout') }} onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+    Logout
+		</a>
+		<form id='logout-form' action="{{route('customer.logout')}}" method="POST" style="display: none;">
+    @csrf
+	</form>
 	</nav>
 
 

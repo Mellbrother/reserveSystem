@@ -7,18 +7,22 @@
 @endsection
 
 @section('content')
-	<input type="button" class="btn btn-danger" 
+{{--	<input type="button" class="btn btn-danger"
 	value="予約確認" onclick="location.href='/clerk/{{$id}}/searchReserve'">
 	@if($is_shop_registerd)
-		<input type="button" class="btn btn-primary" 
+		<input type="button" class="btn btn-primary"
 		value="ショップ登録変更" onclick="location.href='/clerk/{{$id}}/shopEdit'">
 	@else
-		<input type="button" class="btn btn-primary" 
+		<input type="button" class="btn btn-primary"
 		value="ショップ登録" onclick="location.href='/clerk/{{$id}}/shopCreate'">
 	@endif
-	<input type="button" class="btn btn-success" 
+	<input type="button" class="btn btn-success"
 	value="タグ登録" onclick="location.href='/clerk/{{$id}}/tagCreate'">
+--}}
+clerkのページ
+
 @endsection
+
 
 @section('footer')
 copyright 2020 GroupA.

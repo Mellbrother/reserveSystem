@@ -52,4 +52,22 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    /*以下追加記述
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+      if ($request->expectsJson()) {
+          return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+      if (in_array('customer', $exception->guards(), true)) {
+          return redirect()->guest(route('customer.login'));
+        }
+    / if (in_array('clerk', $exception->guards(), true)) {
+          return redirect()->guest(route('clerk.login'));
+        }
+      if (in_array('admin', $exception->guards(), true)) {
+          return redirect()->guest(route('admin.login'));
+        }
+        */
+
 }

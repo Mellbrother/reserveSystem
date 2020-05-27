@@ -28,9 +28,11 @@
     <div class="dropdown">
       <select class="btn btn-secondary dropdown-toggle">
         <option value="指定しない">指定しない</option>
-      @foreach($stations as $stations)
-        <option value="{{$stations->station}}">{{$stations->station}}</option>
+  {{--    @foreach($stations ?? '' as $station)
+        <option value="{{$station->station}}">{{$station->station}}</option>
       @endforeach
+
+      --}}
       </select>
 
     </div>
@@ -39,10 +41,11 @@
 
     <div class="dropdown">
       <select class="btn btn-danger dropdown-toggle">
-        <option value="ジャンルすべて">ジャンルすべて</option>
-      @foreach($tags as $tags)
-        <option value="{{$tags->name}}">{{$tags->name}}</option>
+  {{--      <option value="ジャンルすべて">ジャンルすべて</option>
+      @foreach($tags as $tag)
+        <option value="{{$tag->name}}">{{$tag->name}}</option>
       @endforeach
+  --}}
       </select>
 
     </div>
@@ -97,9 +100,9 @@ copyright 2020 GroupA.
   場所
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdown1">
-    @foreach($stations as $stations)
+    @foreach($stations ?? '' as $station)
       <a class="dropdown-item" href="http://localhost:8000/customer/{{$id}}/searchResult" wigth="50px">
-        {{$stations->station}} </a>
+        {{$station->station}} </a>
     @endforeach
   </div>
 
@@ -112,9 +115,9 @@ copyright 2020 GroupA.
     ジャンル
     </button>
     <div class="dropdown-menu " aria-labelledby="dropdown1">
-    @foreach($tags as $tags)
+    @foreach($tags as $tag)
       <a class="dropdown-item" href="#" wigth="50px">
-        <label><input type="checkbox" name="タグ" value="{{$tags->name}}">{{$tags->name}}</label>
+        <label><input type="checkbox" name="タグ" value="{{$tags->name}}">{{$tag->name}}</label>
       </a>
     @endforeach
     </div>
@@ -135,11 +138,11 @@ copyright 2020 GroupA.
       <p>場所</p>
       <div class="default">
         <table width="180px" id="place">
-        @foreach($stations as $stations)
+        @foreach($stations ?? '' as $station)
           <tr>
-            <td wigth="50px">{{$stations->station}}</td>
+            <td wigth="50px">{{$station->station}}</td>
             <td><input type="checkbox" name="station[]"
-              value="{{$stations->stations}}"></td>
+              value="{{$stations ?? ''->stations}}"></td>
           </tr>
         @endforeach
         </table>
@@ -151,9 +154,9 @@ copyright 2020 GroupA.
       <p>ジャンル</p>
       <div class="default">
         <table width="180px" id="genre">
-        @foreach($tags as $tags)
+        @foreach($tags as $tag)
           <tr>
-            <td wigth="50px">{{$tags->name}}</td>
+            <td wigth="50px">{{$tag->name}}</td>
             <td><input type="checkbox" name="tag[]"
               value="{{$tags->name}}"></td>
           </tr>
@@ -165,8 +168,8 @@ copyright 2020 GroupA.
     <button class = "btn-yellow" type="button">
       <p>値段</p>
       <table width="180px">
-      @foreach($prices as $prices)
-          <tr><td hidden="$prices" wigth="50px" onClick="OnbuttonClick();">>{{$prices->lunch_price}}</td></tr>
+      @foreach($prices as $price)
+          <tr><td hidden="$prices" wigth="50px" onClick="OnbuttonClick();">>{{$price->lunch_price}}</td></tr>
 
       @endforeach
       </table>

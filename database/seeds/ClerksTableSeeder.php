@@ -13,32 +13,37 @@ class ClerksTableSeeder extends Seeder
     public function run()
     {
       $param=[
-        'user_id' => 6,
         'name' => '畔柳　貴俊',
+        'email' => 'id6@gmail.com',
+        'password' => 'password',
       ];
       DB::table('clerks')->insert($param);
 
       $param=[
-        'user_id' => 7,
         'name' => '三矢　群太',
+        'email' => 'id7@gmail.com',
+        'password' => 'password',
       ];
       DB::table('clerks')->insert($param);
 
       $param=[
-        'user_id' => 8,
         'name' => '早藤　君枝',
+        'email' => 'id8@gmail.com',
+        'password' => 'password',
       ];
       DB::table('clerks')->insert($param);
 
       $param=[
-        'user_id' => 9,
         'name' => '藤井　文寿',
+        'email' => 'id9@gmail.com',
+        'password' => 'password',
       ];
       DB::table('clerks')->insert($param);
 
       $param=[
-        'user_id' => 10,
         'name' => '水谷　恵子',
+        'email' => 'id10@gmail.com',
+        'password' => 'password',
       ];
       DB::table('clerks')->insert($param);
     }
