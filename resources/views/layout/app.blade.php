@@ -1,10 +1,6 @@
 <html>
 <head>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 42eb9e40b2a793c3b5fe81f54b3109e0b45c3393
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <style>
@@ -102,8 +98,7 @@ $(function() {
 
 </script>
 
-<<<<<<< HEAD
-=======
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<style>
 		.footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
@@ -115,10 +110,7 @@ $(function() {
 		.mgr-40{margin-left: 40px;}
 	</style>
 	
->>>>>>> 44979866fa82b5bf91be9c197f80f4209230ad87
-=======
 
->>>>>>> 42eb9e40b2a793c3b5fe81f54b3109e0b45c3393
 	<title>仮レイアウト</title>
 </head>
 <body>
