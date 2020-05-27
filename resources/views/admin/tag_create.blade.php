@@ -11,9 +11,6 @@
     </div>
     @endif
 
-    @if($session_data != null)
-    <p>直近の追加タグ：「{{$session_data}}」<p>
-    @endif
     <form action="/admin/{{$id}}/storeTag" method="post">
     <table>
         @csrf
@@ -21,5 +18,14 @@
         <tr><th></th><td><input type="submit" value="追加"></td></tr>
     </table>
     </form>
+
+    <table class="table table-striped">
+    <tr><th>タグ一覧</th></tr>
+    @foreach ($items as $item)
+        <tr>
+            <td>{{$item->name}}</td>
+        </tr>
+    @endforeach
+    </table>
     <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
 @endsection

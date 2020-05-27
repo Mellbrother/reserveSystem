@@ -59,23 +59,18 @@ class AdminController extends Controller
     //タグの追加画面に飛ぶ
     public function createTag(Request $request, $id)
     {
-        $sesdata = $request->session()->get('msg');
-        return view('admin.tag_create', ['id' => $id, 'session_data' => $sesdata]);
+        $items = Tag::all();
+        return view('admin.tag_create', ['id' => $id, 'items' => $items]);
     }
     
     //タグの追加を行う
     public function storeTag(Request $request, $id)
     {
-        $msg = $request->name;
-        
         $this->validate($request, Tag::$rules);
         $tag = new Tag;
         $form = $request->all();
         unset($form['_token']);
         $tag->fill($form)->save();
-        
-        $request->session()->put('msg', $msg);
-        
         return redirect('/admin/'.$id.'/createTag');
     }
 }
