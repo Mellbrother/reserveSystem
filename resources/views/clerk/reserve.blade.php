@@ -7,14 +7,67 @@
 @endsection
 
 @section('content')
-<table>
-    <tr><th>id</th><th>customer_id</th><th>shop_id</th>
-        <th>datetime</th><th>people_num</th></tr>
+<a href="http://localhost:8000/clerk/{{$id}}/home">HOME</a>
+<table class="table">
+    <thead class="thead-dark">
+        <tr><th>日程</th><th>お客様の名前</th><th>予約人数</th>
+    </thead>
     @foreach($items as $item)
-        <tr><td>{{$item->id}}</td>
+        @if($loop->first)
+            @php
+                $year = date('Y', strtotime($item->datetime));
+                $month = date('m', strtotime($item->datetime));
+            @endphp
+            <tr><td class="text-primary">
+               @php
+                    echo date('Y年', strtotime($item->datetime));
+                @endphp
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr><td>
+                    <div class="text-success mgr-20">
+                        @php
+                            echo date('m月', strtotime($item->datetime));
+                        @endphp
+                    </div>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        @endif
+
+        @if(date('Y', strtotime($item->datetime)) > $year)
+        <tr><td class="text-primary">
+            @php
+                $year = date('Y年', strtotime($item->datetime));
+                echo $year;
+            @endphp
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        @endif
+        @if(date('m', strtotime($item->datetime)) > $month)
+        <tr><td>
+                <div class="text-success mgr-20">
+                    @php
+                        echo date('m月', strtotime($item->datetime));
+                    @endphp
+                </div>
+            <td></td>
+            <td></td>
+        </tr>
+        @endif
+
+        <tr><td>
+            <div class="mgr-40">
+                 @php
+                    echo date('d日 h:i', strtotime($item->datetime));
+                @endphp
+            </div>
             <td>{{$item->customer_id}}</td>
-            <td>{{$item->shop_id}}</td>
-            <td>{{$item->datetime}}</td>
             <td>{{$item->people_num}}</td>
         </tr>
     @endforeach

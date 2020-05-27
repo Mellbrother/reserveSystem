@@ -1,6 +1,16 @@
 @extends('layout.app')
 
 @section('content')
+    @if(count($errors) > 0)
+    <div>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form action = "/admin/{{$id}}/destroyReserve" method="post">
     <table>
     @csrf
@@ -15,4 +25,5 @@
     </table>
     <input type="submit" value="削除">
     </form>
+    <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
 @endsection
