@@ -8,7 +8,7 @@
 
 @section('content')
 <table>
-  {{--  <tr><th>id</th><th>clerk_id</th><th>name</th><th>place_address</th><th>lunch_price</th>
+    <tr><th>id</th><th>clerk_id</th><th>name</th><th>place_address</th><th>lunch_price</th>
         <th>dinner_price</th><th>seat_num</th><th>open</th><th>close</th><th>average_stay_time</th>
         <th>station</th><th>walk_minute</th></tr>
     @foreach($items as $item)
@@ -27,7 +27,6 @@
         </tr>
     @endforeach
 
-  --}}
 </table>
 @endsection
 
