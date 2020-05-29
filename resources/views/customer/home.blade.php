@@ -36,9 +36,9 @@
 
     <div class="dropdown">
       <select class="btn btn-danger dropdown-toggle">
-        <option>ジャンルすべて</option>
-      @foreach($tags as $tags)
-        <option value="{{$tags->name}}">{{$tags->name}}</option>
+        <option value="">ジャンルすべて</option>
+      @foreach($tags as $tag)
+        <option value="{{$tag->name}}">{{$tag->name}}</option>
       @endforeach
       </select>
 
@@ -51,7 +51,8 @@
         <option  value="500~1000">500~1000円</option>
         <option  value="1001~1500円">1001~1500円</option>
         <option  value="1501~2000円">1501~2000円</option>
-        <option  value="2001~3000円">3001~4000円</option>
+        <option  value="2001~3000円">2001~3000円</option>
+        <option  value="3001~4000円">3001~4000円</option>
         <option  value="4001~5000円">4001~5000円</option>
         <option  value="5001~7000円">5001~7000円</option>
         <option  value="7001~10000円">7001~10000円</option>
@@ -62,12 +63,7 @@
     </div>
 
     <div class="detail">
-
-      <button type="submit" class="btn btn-primary"
-
-      style="position: absolute;  left: 500px;
-      width: 180px; height: 50px;">詳細検索
-      </button>
+      <button type="submit" class="btn btn-primary">詳細検索</button>
     </div>
   </div>
 </form>
