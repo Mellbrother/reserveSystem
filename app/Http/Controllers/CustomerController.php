@@ -32,9 +32,12 @@ class CustomerController extends Controller
       if ($request->name != null){
         $shops = Shop::where('name', $request->name)->get();
       } else {
-        // $result = [];
+
         $shops = Shop::station($request->station);
-        $tags = Tag::where('tag', $request->tag)->frist();
+        if($request->tag != ""){
+          $shops = Tag::where('name', $request->tag)->first()->shops();
+        }
+
         if($request->price != ""){
           preg_match('/(\d+)~(\d+)/', $request->price, $result);
           $min_price = $result[1];
@@ -48,7 +51,6 @@ class CustomerController extends Controller
         $param = [
           'name' => $request->name,
           'shops' => $shops,
-          'tags' => $tags,
           'id' => $id
          ];
         return view('customer.search_result', $param);
@@ -62,19 +64,35 @@ class CustomerController extends Controller
 
     public function showReservePage(Request $request, $id, $shop_id)
     {
-        // $times = "SELECT Shop FROM open";
-        // $opens = $dbh->query($times);
-        $opens = Shop::open($request->open);
-        $opens = Shop::all();
+        $opens = Shop::find($shop_id)->open;
+        $closes = Shop::find($shop_id)->close;
+        preg_match('/(\d+):(\d+)/', $opens, $result_open);
+        $hour_open = $result_open[1];
+
+        preg_match('/(\d+):(\d+)/', $closes, $result_close);
+        $hour_close = $result_close[1];
+
+        $start = new DateTime();
+        $end = new DateTime();
+
+        $start->setTime($hour_open);
+        $end->setTime($hour_close);
+
+        $date_interval = new DateInterval('PT1H');
+
+        $date_period = new DatePeriod($start, $date_interval, $end);
+
+        foreach ($date_period as $key->$val){
+            $time = ["date_period" => $date_period];
+        }
 
         $param = [
           "id" => $id,
           "shop_id" => $shop_id,
-          // "opens" => $opens,
-          "opens" => $opens
+          "date_period" => "$date_period"
         ];
 
-        return view('customer.reserve', $param);
+        return view('customer.reserve', $param, $time);
     }
 
     public function reserve(Request $request, $id, $shop_id)

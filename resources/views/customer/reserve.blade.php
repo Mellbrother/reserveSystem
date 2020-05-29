@@ -25,11 +25,14 @@
 
     <div class="dropdown">
       <p>時間:
-      <select class="btn btn-light dropdown-toggle" name="station">
+      <select class="btn btn-light dropdown-toggle" name="open" >
         <option value="" style="display: none;">選択してください</option>
-        @foreach ($opens as $open)
-            <option value="{{$open->$open}}">{{$open->$open}}</option>
-        @endforeach
+        <option value="$shop->open">{{shop->open}}</option>
+
+{{--
+        @for ($i={{$open}}; $i<{{$close}}; i++)
+            <option value="{{$i}}">{{$i}}</option>
+        @endfor
         <option value="10:00">10:00</option>
         <option value="10:30">10:30</option>
         <option value="11:00">11:00</option>
@@ -55,6 +58,9 @@
         <option value="21:00">21:00</option>
         <option value="21:30">21:30</option>
         <option value="22:00">22:00</option>
+        --}}
+
+        
       </select>
        </p>
     </div>
