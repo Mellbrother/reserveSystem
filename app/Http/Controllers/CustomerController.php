@@ -11,8 +11,8 @@ use App\Station;
 class CustomerController extends Controller
 {
       //    検索なのに$idがいるか?
-      public function home(Request $request, $id)
-      {
+    public function home(Request $request, $id)
+    {
 
         $tags = Tag::all();
         $stations = Station::all();
@@ -29,12 +29,12 @@ class CustomerController extends Controller
 
     public function showSearchResult(Request $request, $id)
     {
-
       if ($request->name != null){
         $shops = Shop::where('name', $request->name)->get();
       } else {
         // $result = [];
         $shops = Shop::station($request->station);
+        $tags = Tag::where('tag', $request->tag)->frist();
         if($request->price != ""){
           preg_match('/(\d+)~(\d+)/', $request->price, $result);
           $min_price = $result[1];
@@ -45,7 +45,12 @@ class CustomerController extends Controller
         $shops = $shops->get();
       }
 
-        $param = ['name' => $request->name, 'shops' => $shops, 'id' => $id];
+        $param = [
+          'name' => $request->name,
+          'shops' => $shops,
+          'tags' => $tags,
+          'id' => $id
+         ];
         return view('customer.search_result', $param);
      }
 
@@ -55,9 +60,21 @@ class CustomerController extends Controller
         return view('customer.shop_detail', ['shop' => $shop]);
     }
 
-    public function showReservePage($id, $shop_id)
+    public function showReservePage(Request $request, $id, $shop_id)
     {
-        return view('customer.reserve', ["id" => $id, "shop_id" => $shop_id]);
+        // $times = "SELECT Shop FROM open";
+        // $opens = $dbh->query($times);
+        $opens = Shop::open($request->open);
+        $opens = Shop::all();
+
+        $param = [
+          "id" => $id,
+          "shop_id" => $shop_id,
+          // "opens" => $opens,
+          "opens" => $opens
+        ];
+
+        return view('customer.reserve', $param);
     }
 
     public function reserve(Request $request, $id, $shop_id)
