@@ -80,7 +80,8 @@ class ClerkController extends Controller
         return redirect('/clerk/'.$id.'/home');
     }
 
-    public function tagEdit($id){
+    public function tagEdit(){
+        $id = Auth::guard('clerk')->user()->id;
         $tags = Tag::all();
         $hasTags = Clerk::find($id)->shop->tags;
         $hasTagIds = [];
@@ -95,7 +96,8 @@ class ClerkController extends Controller
         return view('clerk.tag_create', $param);
     }
 
-    public function tagRegister(Request $request, $id){
+    public function tagRegister(Request $request){
+        $id = Auth::guard('clerk')->user()->id;
         $shop_id = Clerk::find($id)->shop->id;
 
         $all_tags = Shop::find($shop_id)->tags;
@@ -121,7 +123,7 @@ class ClerkController extends Controller
                                 ->where('tag_id', $tag_id)
                                 ->delete();
         }
-        return redirect('/clerk/'.$id.'/tagCreate');
+        return redirect('/clerk/tagCreate');
     }
 
 }

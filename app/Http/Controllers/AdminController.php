@@ -54,7 +54,7 @@ class AdminController extends Controller
         $form = $request->all();
         unset($form['_token ']);
         $user->fill($form)->save();
-        return redirect('/admin/'.$id.'/home');
+        return redirect('/admin/home');
     }
 
     //ユーザー情報の削除
@@ -62,7 +62,7 @@ class AdminController extends Controller
     {
         $id = Auth::guard('admin')->user()->id;
         User::find($request->id)->delete();
-        return redirect('/admin/'.$id.'/home');
+        return redirect('/admin/home');
     }
 
     //タグの追加画面に飛ぶ
@@ -82,6 +82,6 @@ class AdminController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $tag->fill($form)->save();
-        return redirect('/admin/'.$id.'/createTag');
+        return redirect('/admin/createTag');
     }
 }

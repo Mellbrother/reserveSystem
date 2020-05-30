@@ -11,7 +11,7 @@
     </div>
     @endif
 
-    <form action = "/admin/{{$id}}/destroyReserve" method="post">
+    <form action = "/admin/destroyReserve" method="post">
     <table class="table">
     @csrf
         <thead class="thead-dark">

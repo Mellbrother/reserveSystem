@@ -11,7 +11,7 @@
     </div>
     @endif
 
-    <form action="/admin/{{$id}}/storeTag" method="post">
+    <form action="/admin/storeTag" method="post">
     <table>
         @csrf
         <tr><th>タグの名前: </th><td><input type="text" name="name" value="{{old('name')}}"></td></tr>

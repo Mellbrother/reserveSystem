@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Clerk;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Clerk;
@@ -29,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/clerk/login';
+    protected $redirectTo = '/clerk/home';
 
     /**
      * Create a new controller instance.
@@ -51,7 +54,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:clerks'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,11 +66,6 @@ class RegisterController extends Controller
      * @return \App\Clerk
      */
 
-     public function showRegistrationForm()
-     {
-       return view('clerk.register');
-     }
-
     protected function create(array $data)
     {
         return Clerk::create([
@@ -76,4 +74,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+      return view('clerk.register');
+    }
+
 }

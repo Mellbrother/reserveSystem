@@ -53,8 +53,8 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function
     Route::post('logout',   'Customer\LoginController@logout')->name('customer.logout');
 //    Route::get('home',      'Customer\HomeController@index')->name('customer.home');
 
-    Route::get('reserve/shop/{shop_id}/{id}', 'CustomerController@showReservePage');
-    Route::post('reserve/shop/{shop_id}/{id}', 'CustomerController@reserve');
+    Route::get('reserve/shop/{shop_id}', 'CustomerController@showReservePage');
+    Route::post('reserve/shop/{shop_id}', 'CustomerController@reserve');
     //Route::get('reserve/{shop_id}/{id}', 'CustomerController@showReservePage');
 });
 
@@ -67,9 +67,11 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function
 */
 
 Route::group(['prefix' => 'clerk'], function() {
-    Route::get('/',         function () { return redirect('/clerk/home'); });
+//    Route::get('/',         function () { return redirect('/clerk/home'); });
     Route::get('login',     'Clerk\LoginController@showLoginForm')->name('clerk.login');
     Route::post('login',    'Clerk\LoginController@login');
+    Route::get('register', 'Clerk\RegisterController@showRegistrationForm')->name('clerk.register');
+    Route::post('register', 'Clerk\RegisterController@register');
 });
 
 /*
@@ -78,19 +80,17 @@ Route::group(['prefix' => 'clerk'], function() {
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => 'clerk', 'middleware' => 'auth:clerk'], function() {
-    Route::get('register', 'Clerk\RegisterController@showRegistrationForm')->name('clerk.register');
-    Route::post('register', 'Clerk\RegisterController@register');
     Route::post('logout',   'Clerk\LoginController@logout')->name('clerk.logout');
     Route::get('home',      'ClerkController@home')->name('clerk.home');
 
 //    Route::get('home', 'ClerkController@home');
-    Route::get('{id}/searchReserve', 'ClerkController@shopReserve');
-    Route::get('{id}/shopCreate', 'ClerkController@shopCreate');
-    Route::post('{id}/shopStore', 'ClerkController@shopStore');
-    Route::get('{id}/shopEdit', 'ClerkController@shopEdit');
-    Route::post('{id}/shopUpdate', 'ClerkController@shopUpdate');
-    Route::get('{id}/tagCreate', 'ClerkController@tagEdit');
-    Route::post('{id}/tagStore', 'ClerkController@tagRegister');
+    Route::get('searchReserve', 'ClerkController@shopReserve');
+    Route::get('shopCreate', 'ClerkController@shopCreate');
+    Route::post('shopStore', 'ClerkController@shopStore');
+    Route::get('shopEdit', 'ClerkController@shopEdit');
+    Route::post('shopUpdate', 'ClerkController@shopUpdate');
+    Route::get('tagCreate', 'ClerkController@tagEdit');
+    Route::post('tagStore', 'ClerkController@tagRegister');
 });
 
 
@@ -116,11 +116,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     //Route::get('home',      'Admin\HomeController@index');
 
     Route::get('home', 'AdminController@home')->name('admin.home');
-    Route::get('{id}/findReserve', 'AdminController@findReserveByShopId');
-    Route::post('{id}/destroyReserve', 'AdminController@destroyReserve');
-    Route::post('{id}/userEdit', 'AdminController@userEdit');
-    Route::post('{id}/userUpdate', 'AdminController@userUpdate');
-    Route::post('{id}/userDelete', 'AdminController@userDelete');
-    Route::get('{id}/createTag', 'AdminController@createTag');
-    Route::post('{id}/storeTag', 'AdminController@storeTag');
+    Route::get('findReserve', 'AdminController@findReserveByShopId');
+    Route::post('destroyReserve', 'AdminController@destroyReserve');
+    Route::post('userEdit', 'AdminController@userEdit');
+    Route::post('userUpdate', 'AdminController@userUpdate');
+    Route::post('userDelete', 'AdminController@userDelete');
+    Route::get('createTag', 'AdminController@createTag');
+    Route::post('storeTag', 'AdminController@storeTag');
 });

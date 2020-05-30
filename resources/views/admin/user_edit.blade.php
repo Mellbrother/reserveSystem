@@ -30,7 +30,7 @@
         </tr>
     </table>
 
-    <form action="/admin/{{$id}}/userUpdate" method="post">
+    <form action="/admin/userUpdate" method="post">
     <table>
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
@@ -39,7 +39,7 @@
     </table>
     </form>
 
-    <form action="/admin/{{$id}}/userDelete" method="post">
+    <form action="/admin/userDelete" method="post">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
         <input type="submit" value="削除">

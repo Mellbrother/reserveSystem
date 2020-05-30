@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/clerk/{{$id}}/home">HOME</a>
-<form action="/clerk/{{$id}}/shopStore" method="post">
+<a href="http://localhost:8000/clerk/home">HOME</a>
+<form action="/clerk/shopStore" method="post">
     @csrf
     <table class="table">
         <tr><th></th><td><input type="hidden" name="clerk_id"></td></tr>

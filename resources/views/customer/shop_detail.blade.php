@@ -21,7 +21,7 @@
 <p>カレンダー</p>
 <p>写真</p>
 <input class="btn btn-danger" type="button"
-onClick="location.href='http://www.localhost:8000/customer/reserve/shop/{shop_id}/{id}'" value="予約一覧"
+onClick="location.href='http://www.localhost:8000/customer/reserve/shop/{shop_id}'" value="予約一覧"
 style="position: relative; left: 800px;
 width: 100px; height: 35px;">
 @endsection
