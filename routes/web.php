@@ -26,6 +26,7 @@ Route::post('/customer/{id}/searchResult', 'CustomerController@showSearchResult'
 Route::get('/customer/{id}/shop/{shop_id}', 'CustomerController@showShopDetail');
 Route::post('/customer/{id}/reserve/shop/{shop_id}', 'CustomerController@reserve');
 Route::get('/customer/{id}/reserve/{shop_id}', 'CustomerController@showReservePage');
+Route::get('/customer/{id}/reservelist/', 'CustomerController@reserveList');
 
 Route::get('/clerk/{id}/home', 'ClerkController@home');
 Route::get('/clerk/{id}/searchReserve', 'ClerkController@shopReserve');
@@ -35,6 +36,8 @@ Route::get('/clerk/{id}/shopEdit', 'ClerkController@shopEdit');
 Route::post('/clerk/{id}/shopUpdate', 'ClerkController@shopUpdate');
 Route::get('/clerk/{id}/tagCreate', 'ClerkController@tagEdit');
 Route::post('/clerk/{id}/tagStore', 'ClerkController@tagRegister');
+Route::get('/clerk/{id}/edit', 'ClerkController@edit');
+Route::post('/clerk/{id}/update', 'ClerkController@update');
 
 Route::get('/admin/{id}/home', 'AdminController@home');
 Route::get('/admin/{id}/findReserve', 'AdminController@findReserveByShopId');
