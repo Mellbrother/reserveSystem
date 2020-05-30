@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+//use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -53,7 +55,10 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
-    /*以下追加記述
+    /*認証前にアクセスしたときのリダイレクト先*/
+
+  //  use AuthenticatesUsers;
+/*
     protected function unauthenticated($request, AuthenticationException $exception)
     {
       if ($request->expectsJson()) {
@@ -62,12 +67,25 @@ class Handler extends ExceptionHandler
       if (in_array('customer', $exception->guards(), true)) {
           return redirect()->guest(route('customer.login'));
         }
-    / if (in_array('clerk', $exception->guards(), true)) {
+      if (in_array('clerk', $exception->guards(), true)) {
           return redirect()->guest(route('clerk.login'));
         }
       if (in_array('admin', $exception->guards(), true)) {
           return redirect()->guest(route('admin.login'));
         }
-        */
+
+
+      switch($exception->guards()[0]){
+            case 'customer':
+              return redirect()->guest(route('customer.login'));
+              break;
+            case 'clerk':
+              return redirect()->guest(route('clerk.login'));
+              break;
+            case 'admin':
+              return redirect()->guest(route('admin.login'));
+              break;
+      }
+*/
 
 }

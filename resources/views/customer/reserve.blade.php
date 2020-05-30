@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-<form action="/customer/{{$id}}/reserve/shop/{{$shop_id}}" method="post">
+<form action="/customer/reserve/shop/{{$shop_id}}/{$id}" method="post">
   @csrf
   <table>
   	<tr><th>people_num</th><td><input type="number" name="people_num"></td></tr>

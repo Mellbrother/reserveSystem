@@ -13,22 +13,24 @@
   <button class="btn btn-primary" type="submit">検索</button>
 </form>
 
-<form class="content" action="reserve/shop/{shop_id}" method="post">
-  <button class="btn btn-danger" type="submit"
+  <input class="btn btn-danger" type="button"
+  onClick="location.href='http://www.localhost:8000/customer/home'" value="予約一覧"
   style="position: relative;  left: 800px;
-  width: 100px; height: 35px;">予約一覧</button>
-</form>
-
-
+  width: 100px; height: 35px;">
   <hr>
 
 <form class="content" action="searchResult" method="post">
   @csrf
   <div style="display:inline-flex">
     <div class="dropdown">
+
       <select class="btn btn-secondary dropdown-toggle">
         <option value="指定しない">指定しない</option>
   {{--    @foreach($stations ?? '' as $station)
+
+      <select class="btn btn-secondary dropdown-toggle" name="station">
+      @foreach($stations as $station)
+
         <option value="{{$station->station}}">{{$station->station}}</option>
       @endforeach
 
@@ -52,24 +54,25 @@
     <br>
 
     <div class="dropdown">
-      <select class="btn btn-warning dropdown-toggle"  name="name">
-        <option value="¥こだわらない">¥こだわらない</option>
-        <option value="500~1000円">500~1000円</option>
-        <option value="1001~1500円">1001~1500円</option>
-        <option value="1501~2000円">1501~2000円</option>
-        <option value="2001~3000円">3001~4000円</option>
-        <option value="4001~5000円">4001~5000円</option>
-        <option value="5001~7000円">5001~7000円</option>
-        <option value="7001~10000円">7001~10000円</option>
-        <option value="10001~15000円">10001~15000円</option>
-        <option value="15001~20000円">15001~20000円</option>
-        <option value="20001~30000円">20001~30000円</option>
+      <select class="btn btn-warning dropdown-toggle"  name="price">
+        <option value="">¥こだわらない</option>
+        <option  value="500~1000">500~1000円</option>
+        <option  value="1001~1500円">1001~1500円</option>
+        <option  value="1501~2000円">1501~2000円</option>
+        <option  value="2001~3000円">3001~4000円</option>
+        <option  value="4001~5000円">4001~5000円</option>
+        <option  value="5001~7000円">5001~7000円</option>
+        <option  value="7001~10000円">7001~10000円</option>
+        <option  value="10001~15000円">10001~15000円</option>
+        <option  value="15001~20000円">15001~20000円</option>
+        <option  value="20001~30000円">20001~30000円</option>
       </select>
     </div>
 
     <div class="detail">
 
       <button type="submit" class="btn btn-primary"
+
       style="position: absolute;  left: 500px;
       width: 180px; height: 50px;">詳細検索
       </button>
@@ -101,7 +104,7 @@ copyright 2020 GroupA.
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdown1">
     @foreach($stations ?? '' as $station)
-      <a class="dropdown-item" href="http://localhost:8000/customer/{{$id}}/searchResult" wigth="50px">
+      <a class="dropdown-item" href="http://localhost:8000/customer/searchResult" wigth="50px">
         {{$station->station}} </a>
     @endforeach
   </div>
