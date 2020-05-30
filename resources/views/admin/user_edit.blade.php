@@ -17,31 +17,22 @@
     <table class="table table-bordered">
     <tr><th>役割</th><th>名前</th></tr>
         <tr>
-            @if($form->admin != null)
-            <td>管理者</td>
-            <td>{{$form->admin->name}}</td>
-            @elseif($form->clerk != null)
-            <td>店員</td>
-            <td>{{$form->clerk->name}}</td>
-            @elseif($form->customer != null)
+            @if($type == "customer")
             <td>お客様</td>
-            <td>{{$form->customer->name}}</td>
+            <td>{{$form->name}}</td>
+            @elseif($type == "clerk")
+            <td>店員</td>
+            <td>{{$form->name}}</td>
             @endif
         </tr>
     </table>
 
-    <form action="/admin/{{$id}}/userUpdate" method="post">
-    <table>
-        @csrf
-        <input type="hidden" name="id" value="{{$form->id}}">
-        <tr><th>email: </tr><td><input type="text" name="email" value="{{$form->email}}"></td></tr>
-        <tr><th></th><td><input type="submit" value="編集"></td><tr>
-    </table>
-    </form>
+    
 
     <form action="/admin/{{$id}}/userDelete" method="post">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
+        <input type="hidden" name="type" value="{{$type}}">
         <input type="submit" value="削除">
     </form>
     @endif

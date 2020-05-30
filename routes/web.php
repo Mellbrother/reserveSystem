@@ -44,3 +44,4 @@ Route::post('/admin/{id}/userUpdate', 'AdminController@userUpdate');
 Route::post('/admin/{id}/userDelete', 'AdminController@userDelete');
 Route::get('/admin/{id}/createTag', 'AdminController@createTag');
 Route::post('/admin/{id}/storeTag', 'AdminController@storeTag');
+Route::post('/admin/{id}/deleteTag', 'AdminController@deleteTag');

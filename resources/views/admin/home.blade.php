@@ -11,8 +11,9 @@
     
     <form action="/admin/{{$id}}/userEdit" method="post">
     @csrf
-    <input type="number" name="user_id" value="{{old('user_id')}}" min="1">
-    <input type="submit" value="User編集" class="btn btn-danger">
+    <input type="number" name="id" value="{{old('id')}}" min="1">
+    <input type="submit" value="Customer編集" class="btn btn-danger" name="customer">
+    <input type="submit" value="Clerk編集" class="btn btn-info" name="clerk">
     </form>
 
     <form action="/admin/{{$id}}/createTag" method="get">

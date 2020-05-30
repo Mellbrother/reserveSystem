@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reserve;
-use App\User;
+use App\Customer;
+use App\Clerk;
 use App\Tag;
 
 class AdminController extends Controller
@@ -34,10 +35,18 @@ class AdminController extends Controller
     //ユーザーの編集画面に飛ぶ
     public function userEdit(Request $request, $id)
     {
-        $user = User::find($request->user_id);
-        return view('admin.user_edit', ['form' => $user, 'id' => $id]);
+        if($request->input('customer')) {
+            $user = Customer::find($request->id);
+            $type = "customer";
+        }
+        else if($request->input('clerk')) {
+            $user = Clerk::find($request->id);
+            $type = "clerk";
+        }
+        return view('admin.user_edit', ['form' => $user, 'id' => $id, 'type' => $type]);
     }
     
+    //使ってない！！
     //ユーザー情報の更新
     public function userUpdate(Request $request, $id)
     {
@@ -52,7 +61,12 @@ class AdminController extends Controller
     //ユーザー情報の削除
     public function userDelete(Request $request, $id)
     {
-        User::find($request->id)->delete();
+        if($request->type == "customer"){
+            Customer::find($request->id)->delete();
+        }
+        else if($request->type == "clerk"){
+            Clerk::find($request->id)->delete();
+        }
         return redirect('/admin/'.$id.'/home');
     }
     
@@ -71,6 +85,12 @@ class AdminController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $tag->fill($form)->save();
+        return redirect('/admin/'.$id.'/createTag');
+    }
+    
+    public function deleteTag(Request $request, $id)
+    {
+        Tag::destroy($request->checkbox);
         return redirect('/admin/'.$id.'/createTag');
     }
 }
