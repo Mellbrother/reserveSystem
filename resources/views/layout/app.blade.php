@@ -50,6 +50,10 @@ label:hover {
 	color: #000000;
 }
 
+.buttonSet{
+	margin-bottom: 30px; 
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

@@ -15,12 +15,16 @@ class ClerkController extends Controller
         $shop = Clerk::find($id)->shop;
         if($shop != null){
             $is_shop_registerd = true;
+            $tags = $shop->tags;
         }else{
             $is_shop_registerd = false;
+            $tags = null;
         }
         $param = [
             'id' => $id,
             'is_shop_registerd' => $is_shop_registerd,
+            'shop' => $shop,
+            'tags' => $tags,
         ];
     	return view('clerk.home', $param);
     }
@@ -112,6 +116,22 @@ class ClerkController extends Controller
                                 ->delete();
         }
         return redirect('/clerk/'.$id.'/tagCreate');
+    }
+
+    public function edit($id)
+    {
+        $clerk = Clerk::find($id);
+        return view('clerk.edit', ['clerk' => $clerk, 'id' => $id]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, Clerk::$rules);
+        $reserve = Clerk::find($id);
+        $form = $request->all();
+        unset($form['_token']);
+        $reserve->fill($form)->save();
+        return redirect('/clerk'.$id.'home');
     }
 
 }

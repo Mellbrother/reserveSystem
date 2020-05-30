@@ -89,4 +89,15 @@ class CustomerController extends Controller
         $reserve->fill($form)->save();
         return redirect('/customer/'.$id.'/home');
     }
+
+    public function reserveList(Request $request, $id)
+    {
+      $reserves = Reserve::where('customer_id', $id)
+            ->orderBy('datetime', 'asc')->get();
+        $param = [
+            'id' => $id,
+            'items' => $reserves
+        ];
+      return view('clerk.reserve', $param);
+    }
 }
