@@ -9,11 +9,11 @@
     <input type="submit" value="店の予約確認" class="btn btn-primary">
     </form>
     
-    <form action="/admin/{{$id}}/userEdit" method="post">
+    <form>
     @csrf
-    <input type="number" name="id" value="{{old('id')}}" min="1">
-    <input type="submit" value="Customer編集" class="btn btn-danger" name="customer">
-    <input type="submit" value="Clerk編集" class="btn btn-info" name="clerk">
+    <input type="number" name="fid" value="{{old('fid')}}" min="1">
+    <input type="submit" value="Customer編集" class="btn btn-danger" formaction="/admin/{{$id}}/customerEdit">
+    <input type="submit" value="Clerk編集" class="btn btn-info" formaction="/admin/{{$id}}/clerkEdit">
     </form>
 
     <form action="/admin/{{$id}}/createTag" method="get">

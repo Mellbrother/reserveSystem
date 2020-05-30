@@ -32,18 +32,18 @@ class AdminController extends Controller
         return redirect('/admin/'.$id.'/findReserve');
     }
     
-    //ユーザーの編集画面に飛ぶ
-    public function userEdit(Request $request, $id)
+    //customerの編集画面に飛ぶ
+    public function customerEdit(Request $request, $id)
     {
-        if($request->input('customer')) {
-            $user = Customer::find($request->id);
-            $type = "customer";
-        }
-        else if($request->input('clerk')) {
-            $user = Clerk::find($request->id);
-            $type = "clerk";
-        }
-        return view('admin.user_edit', ['form' => $user, 'id' => $id, 'type' => $type]);
+        $customer = Customer::find($request->fid);
+        return view('admin.user_edit', ['form' => $customer, 'id' => $id, 'type' => 'customer']);
+    }
+    
+    //clerkの編集画面に飛ぶ
+    public function clerkEdit(Request $request, $id)
+    {
+        $clerk = Clerk::find($request->fid);
+        return view('admin.user_edit', ['form' => $clerk, 'id' => $id, 'type' => 'clerk']);
     }
     
     //使ってない！！
@@ -58,15 +58,17 @@ class AdminController extends Controller
         return redirect('/admin/'.$id.'/home');
     }
     
-    //ユーザー情報の削除
-    public function userDelete(Request $request, $id)
+    //customer情報の削除
+    public function customerDelete(Request $request, $id)
     {
-        if($request->type == "customer"){
-            Customer::find($request->id)->delete();
-        }
-        else if($request->type == "clerk"){
-            Clerk::find($request->id)->delete();
-        }
+        Customer::find($request->id)->delete();
+        return redirect('/admin/'.$id.'/home');
+    }
+    
+    //clerk情報の削除
+    public function clerkDelete(Request $request, $id)
+    {
+        Clerk::find($request->id)->delete();
         return redirect('/admin/'.$id.'/home');
     }
     

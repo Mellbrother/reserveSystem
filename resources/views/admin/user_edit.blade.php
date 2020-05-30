@@ -11,16 +11,17 @@
     </div>
     @endif
 
+
     @if($form == null)
     <p>このユーザーは存在していないか、削除されています。</p><br>
     @else
     <table class="table table-bordered">
     <tr><th>役割</th><th>名前</th></tr>
         <tr>
-            @if($type == "customer")
+            @if($type == 'customer')
             <td>お客様</td>
             <td>{{$form->name}}</td>
-            @elseif($type == "clerk")
+            @elseif($type == 'clerk')
             <td>店員</td>
             <td>{{$form->name}}</td>
             @endif
@@ -28,12 +29,14 @@
     </table>
 
     
-
-    <form action="/admin/{{$id}}/userDelete" method="post">
+    <form method="post">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
-        <input type="hidden" name="type" value="{{$type}}">
-        <input type="submit" value="削除">
+        @if($type == 'customer')
+        <input type="submit" value="削除" formaction="/admin/{{$id}}/customerDelete">
+        @elseif($type == 'clerk')
+        <input type="submit" value="削除" formaction="/admin/{{$id}}/clerkDelete">
+        @endif
     </form>
     @endif
 
