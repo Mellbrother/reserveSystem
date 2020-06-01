@@ -35,14 +35,16 @@ class AdminController extends Controller
     //customerの編集画面に飛ぶ
     public function customerEdit(Request $request, $id)
     {
-        $customer = Customer::find($request->fid);
+        //$request->id はemailに変更予定
+        $customer = Customer::find($request->id);
         return view('admin.user_edit', ['form' => $customer, 'id' => $id, 'type' => 'customer']);
     }
     
     //clerkの編集画面に飛ぶ
     public function clerkEdit(Request $request, $id)
     {
-        $clerk = Clerk::find($request->fid);
+        //$request->id はemailに変更予定
+        $clerk = Clerk::find($request->id);
         return view('admin.user_edit', ['form' => $clerk, 'id' => $id, 'type' => 'clerk']);
     }
     

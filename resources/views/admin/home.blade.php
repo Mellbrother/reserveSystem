@@ -11,7 +11,7 @@
     
     <form>
     @csrf
-    <input type="number" name="fid" value="{{old('fid')}}" min="1">
+    <input type="number" name="id" value="{{old('id')}}" min="1">
     <input type="submit" value="Customer編集" class="btn btn-danger" formaction="/admin/{{$id}}/customerEdit">
     <input type="submit" value="Clerk編集" class="btn btn-info" formaction="/admin/{{$id}}/clerkEdit">
     </form>
