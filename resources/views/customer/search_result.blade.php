@@ -19,7 +19,7 @@
   @foreach($shops as $shop)
     <tr class="table-success">
       <td class="font-color">{{$shop->id}}</td>
-      <td><a href="http://localhost:8000/customer/shop/{{$shop->id}}">
+      <td><a href="/customer/shop/{{$shop->id}}">
         {{$shop->name}}</a></td>
       <td class="font-color">{{$shop->place_address}}</td>
       <td class="font-color">{{$shop->open}}</td>

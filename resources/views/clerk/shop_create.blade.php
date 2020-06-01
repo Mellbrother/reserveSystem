@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/clerk/home">HOME</a>
+<a href="/clerk/home">HOME</a>
 <form action="/clerk/shopStore" method="post">
     @csrf
     <table class="table">

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/customer/{{$id}}/home">HOME</a>
+<a href="/customer/home">HOME</a>
 <table class="table">
     <thead class="thead-dark">
         <tr><th>日程</th><th>ショップの名前</th><th>予約人数</th>
