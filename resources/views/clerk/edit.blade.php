@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/clerk/{{$id}}/home">HOME</a>
+<a href="/clerk/home">HOME</a>
 <form action="/clerk/{{$id}}/update" method="post">
     @csrf
     <input type="hidden" name="id" value="{{$id}}">

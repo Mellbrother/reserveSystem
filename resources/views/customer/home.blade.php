@@ -14,7 +14,7 @@
 </form>
 
   <input class="btn btn-danger" type="button"
-  onClick="location.href='http://www.localhost:8000/customer/home'" value="予約一覧"
+  onClick="location.href='/customer/home'" value="予約一覧"
   style="position: relative;  left: 800px;
   width: 100px; height: 35px;">
   <hr>
@@ -49,7 +49,7 @@
       @foreach($tags as $tag)
         <option value="{{$tag->name}}">{{$tag->name}}</option>
       @endforeach
- 
+
       </select>
 
     </div>

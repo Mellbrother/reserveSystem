@@ -8,7 +8,7 @@
 
 @section('content')
 <a href="/clerk/home">HOME</a>
-<form action="/clerk/{{$id}}/shopUpdate" method="post">
+<form action="/clerk/shopUpdate" method="post">
     @csrf
     <table class="table">
         <tr><th></th><td><input type="hidden" name="clerk_id"
