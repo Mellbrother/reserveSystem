@@ -4,7 +4,7 @@
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <style>
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
-body{font-size:20px; color:#999; margin:5px;}
+body{font-size:20px; color:#999; margin:5px; color: black;}
 .content{margin:0px 0px; text-align:left;}
 li{list-style-type: none; display: inline-block; margin-right: 50px; }
 .category{margin: 50px; padding: 0px;}
@@ -16,7 +16,7 @@ hr{
 }
 
 .btn{
-  width:160px;
+  width:200px;
   height:45px;
 }
 
@@ -50,6 +50,10 @@ label:hover {
 	color: #000000;
 }
 
+.buttonSet{
+	margin-bottom: 30px; 
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -75,6 +79,13 @@ label:hover {
     });
   }, false);
 })();
+
+$(function() {
+	const d = new Date(+new Date() + (30 * 60 * 1000));
+	const options = {day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"};
+d.toLocaleDateString("ja-JP", options);
+});
+
 
 (function() {
 	document.getElementById("b1").onclick = (function(){

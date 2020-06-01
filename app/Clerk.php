@@ -19,6 +19,7 @@ class Clerk extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,4 +37,5 @@ class Clerk extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

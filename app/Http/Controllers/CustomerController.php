@@ -38,6 +38,7 @@ class CustomerController extends Controller
       } else {
         // $result = [];
         $shops = Shop::station($request->station);
+        $tags = Tag::where('tag', $request->tag)->frist();
         if($request->price != ""){
           preg_match('/(\d+)~(\d+)/', $request->price, $result);
           $min_price = $result[1];
@@ -47,6 +48,7 @@ class CustomerController extends Controller
         }
         $shops = $shops->get();
       }
+
 
         $param = ['name' => $request->name, 'shops' => $shops];
         return view('customer.search_result', $param);
@@ -61,6 +63,7 @@ class CustomerController extends Controller
         $shop = Shop::where('id', $shop_id)->first();
         return view('customer.shop_detail', ['shop' => $shop]);
     }
+
 
     public function showReservePage($shop_id)
     {
@@ -80,5 +83,16 @@ class CustomerController extends Controller
         unset($form['_token']);
         $reserve->fill($form)->save();
         return redirect('/customer/home');
+    }
+
+    public function reserveList(Request $request, $id)
+    {
+      $reserves = Reserve::where('customer_id', $id)
+            ->orderBy('datetime', 'asc')->get();
+        $param = [
+            'id' => $id,
+            'items' => $reserves
+        ];
+      return view('clerk.reserve', $param);
     }
 }

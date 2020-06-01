@@ -18,8 +18,9 @@
   </tr>
 </table>
 
-<p>カレンダー</p>
 <p>写真</p>
+<p>昼の値段</p>
+<p>夜の値段</p>
 <input class="btn btn-danger" type="button"
 onClick="location.href='http://www.localhost:8000/customer/reserve/shop/{shop_id}'" value="予約一覧"
 style="position: relative; left: 800px;

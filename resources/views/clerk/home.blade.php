@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 {{--
   <input type="button" class="btn btn-danger"
 	value="予約確認" onclick="location.href='/clerk/searchReserve'">
@@ -22,6 +23,7 @@
 	value="タグ登録" onclick="location.href='/clerk/tagCreate'">
 
 <p>clerkのページ</p>
+
 
 @endsection
 
