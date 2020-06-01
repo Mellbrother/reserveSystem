@@ -27,19 +27,17 @@
             @endif
         </tr>
     </table>
-
     
     <form method="post">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
         @if($type == 'customer')
-        <input type="submit" value="削除" formaction="/admin/{{$id}}/customerDelete">
+        <input type="submit" value="削除" formaction="/admin/customerDelete">
         @elseif($type == 'clerk')
-        <input type="submit" value="削除" formaction="/admin/{{$id}}/clerkDelete">
+        <input type="submit" value="削除" formaction="/admin/clerkDelete">
         @endif
     </form>
     @endif
 
-    <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
+    <a href="/admin/home">管理者ホームに戻る</a><br>
 @endsection
-        

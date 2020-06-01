@@ -11,7 +11,7 @@
     </div>
     @endif
 
-    <form action="/admin/{{$id}}/storeTag" method="post">
+    <form action="/admin/storeTag" method="post">
     <table>
         @csrf
         <tr><th>タグの名前: </th><td><input type="text" name="name" value="{{old('name')}}"></td></tr>
@@ -19,7 +19,7 @@
     </table>
     </form>
 
-    <form action="/admin/{{$id}}/deleteTag" method="post">
+    <form action="/admin/deleteTag" method="post">
     <table class="table table-striped">
     @csrf
     <tr><th>タグ一覧</th></tr>
@@ -32,5 +32,5 @@
     </table>
     <input type="submit" value="削除"><br><br><br>
 
-    <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
+    <a href="/admin/home">管理者ホームに戻る</a><br>
 @endsection
