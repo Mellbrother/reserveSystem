@@ -9,9 +9,14 @@ use App\Reserve;
 use App\Clerk;
 use App\Tag;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+
 class ClerkController extends Controller
 {
-    public function home($id){
+    public function home(){
+        $id = Auth::guard('clerk')->user()->id;
         $shop = Clerk::find($id)->shop;
         if($shop != null){
             $is_shop_registerd = true;
@@ -29,7 +34,8 @@ class ClerkController extends Controller
     	return view('clerk.home', $param);
     }
 
-    public function shopReserve($id){
+    public function shopReserve(){
+        $id = Auth::guard('clerk')->user()->id;
         $shop = Shop::where('clerk_id', $id)->first();
     	$reserves = Reserve::where('shop_id', $shop->id)
             ->orderBy('datetime', 'asc')->get();
@@ -40,14 +46,16 @@ class ClerkController extends Controller
     	return view('clerk.reserve', $param);
     }
 
-    public function shopCreate($id){
+    public function shopCreate(){
+        $id = Auth::guard('clerk')->user()->id;
         $param = [
             'id'    => $id,
         ];
     	return view('clerk.shop_create', $param);
     }
 
-    public function shopStore(Request $request, $id){
+    public function shopStore(Request $request){
+      $id = Auth::guard('clerk')->user()->id;
     	$this->validate($request, Shop::$rules);
         $shop = new Shop;
         $form = $request->all();
@@ -56,7 +64,8 @@ class ClerkController extends Controller
         return redirect('/clerk/'.$id.'/home');
     }
 
-    public function shopEdit($id){
+    public function shopEdit(){
+        $id = Auth::guard('clerk')->user()->id;
         $shop = Clerk::find($id)->shop;
         $param = [
             'id'   => $id,
@@ -65,7 +74,8 @@ class ClerkController extends Controller
         return view('clerk.shop_edit', $param);
     }
 
-    public function shopUpdate(Request $request, $id){
+    public function shopUpdate(Request $request){
+        $id = Auth::guard('clerk')->user()->id;
         $this->validate($request, Shop::$rules);
         $shop = Clerk::find($id)->shop;
         $form = $request->all();
@@ -74,7 +84,8 @@ class ClerkController extends Controller
         return redirect('/clerk/'.$id.'/home');
     }
 
-    public function tagEdit($id){
+    public function tagEdit(){
+        $id = Auth::guard('clerk')->user()->id;
         $tags = Tag::all();
         $hasTags = Clerk::find($id)->shop->tags;
         $hasTagIds = [];
@@ -89,7 +100,8 @@ class ClerkController extends Controller
         return view('clerk.tag_create', $param);
     }
 
-    public function tagRegister(Request $request, $id){
+    public function tagRegister(Request $request){
+        $id = Auth::guard('clerk')->user()->id;
         $shop_id = Clerk::find($id)->shop->id;
 
         $all_tags = Shop::find($shop_id)->tags;
@@ -108,14 +120,14 @@ class ClerkController extends Controller
                 'tag_id'  => $tag_id
             ];
             DB::table('shop_tag')->insert($param);
-        } 
+        }
 
         foreach($tag_ids_for_delete as $tag_id){
             DB::table('shop_tag')->where('shop_id', $shop_id)
                                 ->where('tag_id', $tag_id)
                                 ->delete();
         }
-        return redirect('/clerk/'.$id.'/tagCreate');
+        return redirect('/clerk/tagCreate');
     }
 
     public function edit($id)

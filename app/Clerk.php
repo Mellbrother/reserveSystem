@@ -2,21 +2,40 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Clerk extends Model
+class Clerk extends Authenticatable
 {
-    protected $guarded = array('id');
+    use Notifiable;
 
-    public static $rules = array(
-    	// idが存在しているかのcheck
-    	// nameの制限
-    	'user_id' => 'integer|required',
-    	'name'    => 'string|required',
-    );
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
-    public function shop()
-    {
-        return $this->hasOne('App\Shop');
-    }
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
 }
