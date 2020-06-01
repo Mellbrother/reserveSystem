@@ -66,7 +66,6 @@ class CustomerController extends Controller
       $param = [
         'name' => $request->name,
         'shops' => $shops,
-        'id' => $id,
         'tags' => $tags,
         'stations' => $stations
        ];
@@ -81,15 +80,15 @@ class CustomerController extends Controller
 
         $shop = Shop::where('id', $shop_id)->first();
         $param = [
-          'id' => $id,
           'shop_id' => $shop_id,
           'shop' => $shop
         ];
         return view('customer.shop_detail', $param);
     }
 
-    public function showReservePage($id, $shop_id)
+    public function showReservePage($shop_id)
     {
+        $id = Auth::guard('customer')->user()->id;
         $shop = Shop::where('id', $shop_id)->first();
         // $open = $shop->open;
         // $close = $shop->close;
@@ -107,12 +106,9 @@ class CustomerController extends Controller
           "shop_id" => $shop_id,
           // "date_period" => $date_period
         ];
+        return view('customer.reserve', $param);
+      }
 
-    public function showReservePage($shop_id)
-    {
-        $id = Auth::guard('customer')->user()->id;
-        return view('customer.reserve', ["id" => $id, "shop_id" => $shop_id]);
-    }
 
     public function reserve(Request $request)
     {
