@@ -50,15 +50,15 @@ class CustomerController extends Controller
         }
 
         $shops = $shops->get();
-        //
-        // if($request->tag != ""){
-        //   for($i=0; $i<count($tags); $i++){
-        //     $shops = Tag::wherein('name', $shops->tag)->get();
-        //   }
-        // }
-        // else {
-        //   $shops = $shops->get();
-        // }
+
+        if($request->tag != ""){
+          for($i=0; $i<count($tags); $i++){
+            $shops = Tag::wherein('name', $shops->tag)->get();
+          }
+        }
+        else {
+          $shops = $shops->get();
+        }
       }
 
 
