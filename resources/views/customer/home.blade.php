@@ -42,13 +42,14 @@
     <br>
 
     <div class="dropdown">
-      <select class="btn btn-danger dropdown-toggle">
 
-  {{--      <option value="ジャンルすべて">ジャンルすべて</option>
+      <select class="btn btn-danger dropdown-toggle" name="tag">
+        <option value="">ジャンルすべて</option>
+
       @foreach($tags as $tag)
         <option value="{{$tag->name}}">{{$tag->name}}</option>
       @endforeach
-  --}}
+ 
       </select>
 
     </div>

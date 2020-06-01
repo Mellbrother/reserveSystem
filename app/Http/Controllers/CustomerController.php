@@ -7,6 +7,9 @@ use App\Shop;
 use App\Reserve;
 use App\Tag;
 use App\Station;
+use Datetime;
+use DateInterval;
+use Dateperiod;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -31,14 +34,15 @@ class CustomerController extends Controller
 
     public function showSearchResult(Request $request)
     {
-      //$id = Auth::guard('customer')->user()->id;
+
+      $tags = Tag::all();
+      $stations = Station::all();
 
       if ($request->name != null){
         $shops = Shop::where('name', $request->name)->get();
       } else {
-        // $result = [];
         $shops = Shop::station($request->station);
-        $tags = Tag::where('tag', $request->tag)->frist();
+
         if($request->price != ""){
           preg_match('/(\d+)~(\d+)/', $request->price, $result);
           $min_price = $result[1];
@@ -46,11 +50,26 @@ class CustomerController extends Controller
           $shops = $shops->lunchMinPrice($min_price)
                       ->lunchMaxPrice($max_price);
         }
+
         $shops = $shops->get();
+        //
+        // if($request->tag != ""){
+        //   for($i=0; $i<count($tags); $i++){
+        //     $shops = Tag::wherein('name', $shops->tag)->get();
+        //   }
+        // }
+        // else {
+        //   $shops = $shops->get();
+        // }
       }
 
-
-        $param = ['name' => $request->name, 'shops' => $shops];
+      $param = [
+        'name' => $request->name,
+        'shops' => $shops,
+        'id' => $id,
+        'tags' => $tags,
+        'stations' => $stations
+       ];
         return view('customer.search_result', $param);
      }
 
@@ -61,9 +80,33 @@ class CustomerController extends Controller
         session()->put((['key' => $shop_id]));
 
         $shop = Shop::where('id', $shop_id)->first();
-        return view('customer.shop_detail', ['shop' => $shop]);
+        $param = [
+          'id' => $id,
+          'shop_id' => $shop_id,
+          'shop' => $shop
+        ];
+        return view('customer.shop_detail', $param);
     }
 
+    public function showReservePage($id, $shop_id)
+    {
+        $shop = Shop::where('id', $shop_id)->first();
+        // $open = $shop->open;
+        // $close = $shop->close;
+        //
+        //
+        // $start = new DateTime($open);
+        // $end =  new DateTime($close);
+        //
+        // $date_interval = new DateInterval('PT1H');
+        //
+        // $date_period = new DatePeriod($start, $date_interval, $end);
+
+        $param = [
+          "id" => $id,
+          "shop_id" => $shop_id,
+          // "date_period" => $date_period
+        ];
 
     public function showReservePage($shop_id)
     {
