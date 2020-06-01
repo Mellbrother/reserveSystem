@@ -11,7 +11,7 @@
     </div>
     @endif
 
-    <form action = "/admin/{{$id}}/destroyReserve" method="post">
+    <form action = "/admin/destroyReserve" method="post">
     <table class="table">
     @csrf
         <thead class="thead-dark">
@@ -83,5 +83,5 @@
     <input type="submit" value="削除">
     </form>
 
-    <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
+    <a href="/admin/home">管理者ホームに戻る</a><br>
 @endsection

@@ -21,29 +21,100 @@ Route::resource('shop', 'ShopController');
 Route::resource('reserve', 'ReserveController');
 Route::resource('tag', 'TagController');
 
-Route::get('/customer/{id}/home', 'CustomerController@home');
-Route::post('/customer/{id}/searchResult', 'CustomerController@showSearchResult');
-Route::get('/customer/{id}/shop/{shop_id}', 'CustomerController@showShopDetail');
-Route::post('/customer/{id}/reserve/shop/{shop_id}', 'CustomerController@reserve');
-Route::get('/customer/{id}/reserve/{shop_id}', 'CustomerController@showReservePage');
 
-Route::get('/clerk/{id}/home', 'ClerkController@home');
-Route::get('/clerk/{id}/searchReserve', 'ClerkController@shopReserve');
-Route::get('/clerk/{id}/shopCreate', 'ClerkController@shopCreate');
-Route::post('/clerk/{id}/shopStore', 'ClerkController@shopStore');
-Route::get('/clerk/{id}/shopEdit', 'ClerkController@shopEdit');
-Route::post('/clerk/{id}/shopUpdate', 'ClerkController@shopUpdate');
-Route::get('/clerk/{id}/tagCreate', 'ClerkController@tagEdit');
-Route::post('/clerk/{id}/tagStore', 'ClerkController@tagRegister');
+Auth::routes();
 
-Route::get('/admin/{id}/home', 'AdminController@home');
-Route::get('/admin/{id}/findReserve', 'AdminController@findReserveByShopId');
-Route::post('/admin/{id}/destroyReserve', 'AdminController@destroyReserve');
-Route::get('/admin/{id}/customerEdit', 'AdminController@customerEdit');
-Route::get('/admin/{id}/clerkEdit', 'AdminController@clerkEdit');
-Route::post('/admin/{id}/userUpdate', 'AdminController@userUpdate');
-Route::post('/admin/{id}/customerDelete', 'AdminController@customerDelete');
-Route::post('/admin/{id}/clerkDelete', 'AdminController@clerkDelete');
-Route::get('/admin/{id}/createTag', 'AdminController@createTag');
-Route::post('/admin/{id}/storeTag', 'AdminController@storeTag');
-Route::post('/admin/{id}/deleteTag', 'AdminController@deleteTag');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/*
+|--------------------------------------------------------------------------
+|Customer 認証不要
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'customer'], function() {
+    Route::get('login',     'Customer\LoginController@showLoginForm')->name('customer.login');
+    Route::post('login',    'Customer\LoginController@login');
+
+    Route::get('register', 'Customer\RegisterController@showRegistrationForm')->name('customer.register');
+    Route::post('register', 'Customer\RegisterController@register');
+    Route::get('home', 'CustomerController@home')->name('customer.home');
+    Route::post('searchResult', 'CustomerController@showSearchResult');
+    Route::get('shop/{shop_id}', 'CustomerController@showShopDetail');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Customer ログイン後
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function() {
+    Route::post('logout',   'Customer\LoginController@logout')->name('customer.logout');
+    Route::get('reserve/shop/{shop_id}', 'CustomerController@showReservePage');
+    Route::post('reserve/shop/{shop_id}', 'CustomerController@reserve');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| clerk 認証不要
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'clerk'], function() {
+    Route::get('login',     'Clerk\LoginController@showLoginForm')->name('clerk.login');
+    Route::post('login',    'Clerk\LoginController@login');
+    Route::get('register', 'Clerk\RegisterController@showRegistrationForm')->name('clerk.register');
+    Route::post('register', 'Clerk\RegisterController@register');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Clerk ログイン後
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'clerk', 'middleware' => 'auth:clerk'], function() {
+    Route::post('logout',   'Clerk\LoginController@logout')->name('clerk.logout');
+    Route::get('home',      'ClerkController@home')->name('clerk.home');
+    Route::get('searchReserve', 'ClerkController@shopReserve');
+    Route::get('shopCreate', 'ClerkController@shopCreate');
+    Route::post('shopStore', 'ClerkController@shopStore');
+    Route::get('shopEdit', 'ClerkController@shopEdit');
+    Route::post('shopUpdate', 'ClerkController@shopUpdate');
+    Route::get('tagCreate', 'ClerkController@tagEdit');
+    Route::post('tagStore', 'ClerkController@tagRegister');
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| 3) Admin 認証不要
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/',         function () { return redirect('/admin/home'); });
+    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login',    'Admin\LoginController@login');
+});
+
+/*
+|--------------------------------------------------------------------------
+| 4) Admin ログイン後
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+    Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
+    Route::get('home', 'AdminController@home')->name('admin.home');
+    Route::get('findReserve', 'AdminController@findReserveByShopId');
+    Route::post('destroyReserve', 'AdminController@destroyReserve');
+    Route::post('customerEdit', 'AdminController@customerEdit');
+    Route::post('clerkEdit', 'AdminController@clerkEdit');
+    Route::post('userUpdate', 'AdminController@userUpdate');
+    Route::post('customerDelete', 'AdminController@customerDelete');
+    Route::post('clerkDelete', 'AdminController@clerkDelete');
+    Route::get('createTag', 'AdminController@createTag');
+    Route::post('storeTag', 'AdminController@storeTag');
+    Route::post('deleteTag', 'AdminController@deleteTag');
+});

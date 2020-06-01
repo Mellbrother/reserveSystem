@@ -22,8 +22,8 @@
 <p>昼の値段</p>
 <p>夜の値段</p>
 <input class="btn btn-danger" type="button"
-onClick="location.href='http://www.localhost:8000/customer/{id}/reserve/{shop_id}'" value="予約画面へ"
-style="position: relative; left: 500px;
+onClick="location.href='http://www.localhost:8000/customer/reserve/shop/{shop_id}'" value="予約一覧"
+style="position: relative; left: 800px;
 width: 100px; height: 35px;">
 @endsection
 

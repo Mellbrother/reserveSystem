@@ -28,7 +28,7 @@
         </tr>
     </table>
 
-    
+
     <form method="post">
         @csrf
         <input type="hidden" name="id" value="{{$form->id}}">
@@ -40,6 +40,5 @@
     </form>
     @endif
 
-    <a href="/admin/{{$id}}/home">管理者ホームに戻る</a><br>
+    <a href="/admin/home">管理者ホームに戻る</a><br>
 @endsection
-        
