@@ -59,7 +59,4 @@ class LoginController extends Controller
 
         return redirect('/admin/login');
     }
-    public function redirectTo(){
-        return view('admin.home');
-    }
 }

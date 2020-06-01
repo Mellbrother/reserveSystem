@@ -31,10 +31,9 @@ class AdminController extends Controller
     //予約の削除
     public function destroyReserve(Request $request)
     {
-        $id = Auth::guard('admin')->user()->id;
         // "checkbox"はチェックされた予約の配列
         Reserve::destroy($request->checkbox);
-        return redirect('/admin/'.$id.'/findReserve');
+        return redirect('/admin/findReserve');
     }
 
     //ユーザーの編集画面に飛ぶ

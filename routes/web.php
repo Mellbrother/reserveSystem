@@ -33,7 +33,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => 'customer'], function() {
-//    Route::get('/',         function () { return redirect('/customer/home'); });
     Route::get('login',     'Customer\LoginController@showLoginForm')->name('customer.login');
     Route::post('login',    'Customer\LoginController@login');
 
@@ -51,11 +50,8 @@ Route::group(['prefix' => 'customer'], function() {
 */
 Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function() {
     Route::post('logout',   'Customer\LoginController@logout')->name('customer.logout');
-//    Route::get('home',      'Customer\HomeController@index')->name('customer.home');
-
     Route::get('reserve/shop/{shop_id}', 'CustomerController@showReservePage');
     Route::post('reserve/shop/{shop_id}', 'CustomerController@reserve');
-    //Route::get('reserve/{shop_id}/{id}', 'CustomerController@showReservePage');
 });
 
 
@@ -67,7 +63,6 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function
 */
 
 Route::group(['prefix' => 'clerk'], function() {
-//    Route::get('/',         function () { return redirect('/clerk/home'); });
     Route::get('login',     'Clerk\LoginController@showLoginForm')->name('clerk.login');
     Route::post('login',    'Clerk\LoginController@login');
     Route::get('register', 'Clerk\RegisterController@showRegistrationForm')->name('clerk.register');
@@ -82,8 +77,6 @@ Route::group(['prefix' => 'clerk'], function() {
 Route::group(['prefix' => 'clerk', 'middleware' => 'auth:clerk'], function() {
     Route::post('logout',   'Clerk\LoginController@logout')->name('clerk.logout');
     Route::get('home',      'ClerkController@home')->name('clerk.home');
-
-//    Route::get('home', 'ClerkController@home');
     Route::get('searchReserve', 'ClerkController@shopReserve');
     Route::get('shopCreate', 'ClerkController@shopCreate');
     Route::post('shopStore', 'ClerkController@shopStore');
@@ -113,8 +106,6 @@ Route::group(['prefix' => 'admin'], function() {
 */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
-    //Route::get('home',      'Admin\HomeController@index');
-
     Route::get('home', 'AdminController@home')->name('admin.home');
     Route::get('findReserve', 'AdminController@findReserveByShopId');
     Route::post('destroyReserve', 'AdminController@destroyReserve');
