@@ -14,8 +14,25 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+/*リダイレクト先を条件分けして変えたい*/
         if (! $request->expectsJson()) {
-            return route('login');
+            return route('customer.login');
         }
+
+
+    /*    if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+          }
+        if (in_array('customer', $exception->guards(), true)) {
+            return redirect()->guest(route('customer.login'));
+          }
+        if (in_array('clerk', $exception->guards(), true)) {
+            return redirect()->guest(route('clerk.login'));
+          }
+        if (in_array('admin', $exception->guards(), true)) {
+            return redirect()->guest(route('admin.login'));
+          }
+          */
+
     }
 }

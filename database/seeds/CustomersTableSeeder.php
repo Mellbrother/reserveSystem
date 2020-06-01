@@ -13,32 +13,37 @@ class CustomersTableSeeder extends Seeder
     public function run()
     {
       $param=[
-        'user_id' => 11,
         'name' => '辻　憲一',
+        'email' => 'id11@gmail.com',
+        'password' => bcrypt('password'),
       ];
       DB::table('customers')->insert($param);
 
       $param=[
-        'user_id' => 12,
         'name' => '落合　あき',
+        'email' => 'id12@gmail.com',
+        'password' => bcrypt('password'),
       ];
       DB::table('customers')->insert($param);
 
       $param=[
-        'user_id' => 14,
         'name' => '中村　哲志',
+        'email' => 'id13@gmail.com',
+        'password' => bcrypt('password'),
       ];
       DB::table('customers')->insert($param);
 
       $param=[
-        'user_id' => 15,
         'name' => '寺本　千里',
+        'email' => 'id14@gmail.com',
+        'password' => bcrypt('password'),
       ];
       DB::table('customers')->insert($param);
 
       $param=[
-        'user_id' => 16,
         'name' => '八木　佳樹',
+        'email' => 'id15@gmail.com',
+        'password' => bcrypt('password'),
       ];
       DB::table('customers')->insert($param);
     }

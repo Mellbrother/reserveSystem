@@ -11,26 +11,28 @@ use Datetime;
 use DateInterval;
 use Dateperiod;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 class CustomerController extends Controller
 {
       //    検索なのに$idがいるか?
-    public function home(Request $request, $id)
-    {
-
+      public function home(Request $request)
+      {
         $tags = Tag::all();
         $stations = Station::all();
         $shops = Shop::all();
 
         $param = [
           'tags' => $tags,
-          'id' => $id,
+          //'id' => $id,
           'stations' => $stations,
           'shops' => $shops,
         ];
         return view('customer.home', $param);
       }
 
-    public function showSearchResult(Request $request, $id)
+    public function showSearchResult(Request $request)
     {
 
       $tags = Tag::all();
@@ -61,31 +63,32 @@ class CustomerController extends Controller
         }
       }
 
-
-
       $param = [
         'name' => $request->name,
         'shops' => $shops,
-        'id' => $id,
         'tags' => $tags,
         'stations' => $stations
        ];
         return view('customer.search_result', $param);
      }
 
-    public function showShopDetail($id, $shop_id)
+    public function showShopDetail($shop_id)
     {
+        /*shop_idをセッションに保存*/
+        session(['key' => $shop_id]);
+        session()->put((['key' => $shop_id]));
+
         $shop = Shop::where('id', $shop_id)->first();
         $param = [
-          'id' => $id,
           'shop_id' => $shop_id,
           'shop' => $shop
         ];
         return view('customer.shop_detail', $param);
     }
 
-    public function showReservePage($id, $shop_id)
+    public function showReservePage($shop_id)
     {
+        $id = Auth::guard('customer')->user()->id;
         $shop = Shop::where('id', $shop_id)->first();
         // $open = $shop->open;
         // $close = $shop->close;
@@ -103,13 +106,14 @@ class CustomerController extends Controller
           "shop_id" => $shop_id,
           // "date_period" => $date_period
         ];
-
         return view('customer.reserve', $param);
-    }
+      }
 
-    public function reserve(Request $request, $id, $shop_id)
+
+    public function reserve(Request $request)
     {
-
+        $id = Auth::guard('customer')->user()->id;
+        $shop_id = session('key');
         $this->validate($request, Reserve::$rules);
         $reserve = new Reserve;
 
@@ -117,6 +121,17 @@ class CustomerController extends Controller
         $form += ['customer_id' => $id, 'shop_id' => $shop_id];
         unset($form['_token']);
         $reserve->fill($form)->save();
-        return redirect('/customer/'.$id.'/home');
+        return redirect('/customer/home');
+    }
+
+    public function reserveList(Request $request, $id)
+    {
+      $reserves = Reserve::where('customer_id', $id)
+            ->orderBy('datetime', 'asc')->get();
+        $param = [
+            'id' => $id,
+            'items' => $reserves
+        ];
+      return view('clerk.reserve', $param);
     }
 }
