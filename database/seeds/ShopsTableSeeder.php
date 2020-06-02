@@ -50,9 +50,9 @@ class ShopsTableSeeder extends Seeder
           'dinner_price' => 1700,
           'seat_num' => 50,
           'open' => '15:00',
-          'close' => '25:00',
+          'close' => '24:00',
           'average_stay_minute' => 30,
-          'station' => '小田原',
+          'station' => '新宿',
           'walk_minute' => 4,
         ];
         DB::table('shops')->insert($param);
@@ -67,7 +67,7 @@ class ShopsTableSeeder extends Seeder
           'open' => '08:00',
           'close' => '18:00',
           'average_stay_minute' => 20,
-          'station' => '生田',
+          'station' => '新宿',
           'walk_minute' => 12,
         ];
         DB::table('shops')->insert($param);

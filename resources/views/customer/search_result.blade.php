@@ -1,24 +1,26 @@
 @extends('layout.app')
 
 @section('content')
+@csrf
 <table class="table">
   <thead class="thead-dark">
     <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>place_address</th>
-        <th>open</th>
-        <th>close</th>
-        <th>lunchprice</th>
-        <th>dinnerprice</th>
-        <th>station</th>
-        <th>walk_minute</th>
+
+        <th>店</th>
+        <th>住所</th>
+        <th>開店</th>
+        <th>閉店</th>
+        <th>昼食</th>
+        <th>夕食</th>
+        <th>駅</th>
+        <th>店までの時間</th>
+        <th>タグ</th>
       </tr>
   </thead>
 
   @foreach($shops as $shop)
     <tr class="table-success">
-      <td class="font-color">{{$shop->id}}</td>
+
       <td><a href="http://localhost:8000/customer/shop/{{$shop->id}}">
         {{$shop->name}}</a></td>
       <td class="font-color">{{$shop->place_address}}</td>
@@ -28,6 +30,13 @@
       <td class="font-color">{{$shop->dinner_price}}</td>
       <td class="font-color">{{$shop->station}}</td>
       <td class="font-color">{{$shop->walk_minute}}</td>
+      <td>
+        <ul>
+          @foreach($shop->tags as $tag)
+            <li class="font-color">{{$tag->name}}</li>
+          @endforeach
+        </ul>
+      </td>
     </tr>
   @endforeach
 
@@ -39,7 +48,7 @@
   @csrf
   <div style="display:inline-flex">
     <div>
-      <select name="station">
+      <select class="ms" name="station">
       @foreach($stations as $station)
         <option value="{{$station->station}}">{{$station->station}}</option>
       @endforeach
@@ -47,9 +56,9 @@
     </div>
 
     <div>
-      <select id="ms" name="tag" multiple="multiple">
+      <select id="ms" name="tags[]" multiple="multiple">
         @foreach($tags as $tag)
-          <option value="{{$tag->name}}">{{$tag->name}}</option>
+          <option value="{{$tag->id}}">{{$tag->name}}</option>
         @endforeach
       </select>
     </div>

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/customer/{{$id}}/home">HOME</a>
+<a href="http://localhost:8000/customer/home">HOME</a>
 <table class="table">
     <thead class="thead-dark">
         <tr><th>日程</th><th>ショップの名前</th><th>予約人数</th>
@@ -64,10 +64,10 @@
         <tr><td>
             <div class="mgr-40">
                  @php
-                    echo date('d日 h:i', strtotime($item->datetime));
+                    echo date('d日 H:i', strtotime($item->datetime));
                 @endphp
             </div>
-            <td>{{$item->shop_id}}</td>
+            <td>{{$item->shop_name}}</td>
             <td>{{$item->people_num}}</td>
         </tr>
     @endforeach
