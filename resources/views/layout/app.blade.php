@@ -2,6 +2,7 @@
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css" text="text/css">
 <style>
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
 body{font-size:20px; color:#999; margin:5px; color: black;}
@@ -10,6 +11,7 @@ li{list-style-type: none; display: inline-block; margin-right: 50px; }
 .category{margin: 50px; padding: 0px;}
 .mgr-20{margin-left: 20px;}
 .mgr-40{margin-left: 40px;}
+
 
 hr{
 	line-height: 5em;
@@ -50,9 +52,7 @@ label:hover {
 	color: #000000;
 }
 
-
 #ms{width:200px;}
-
 .ms-parent {
     display: inline-block;
     position: relative;
@@ -216,10 +216,9 @@ label:hover {
 <script src="http://web-designer.cman.jp/freejs/cmanCalendar_v093.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="jquery.multiple.select.js"></script>
+<script type="text/javascript" src="js/genre.js"></script>
 
-
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</script>
 <script>
 
 (function() {
@@ -317,9 +316,7 @@ $(function() {
                 html.push('<div class="ms-search">', '<input type="text" autocomplete="off" autocorrect="off" autocapitilize="off" spellcheck="false">', '</div>');
             }
             html.push('<ul>');
-            if (this.options.selectAll && !this.options.single) {
-                html.push('<li>', '<label>', '<input type="checkbox" name="selectAll" /> ', '[' + this.options.selectAllText + ']', '</label>', '</li>');
-            }
+
             $.each(this.$el.children(), function(i, elm) {
                 html.push(that.optionToHtml(i, elm));
             });
@@ -699,13 +696,11 @@ $(function() {
  $('#ms').multipleSelect({
             width: 250,
             placeholder:"ジャンル選択",
-     selectAllText:"ジャンル全て",
             multipleWidth: 55,
 
         });
 
  });
-
 
 
 

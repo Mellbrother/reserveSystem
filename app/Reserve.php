@@ -15,7 +15,7 @@ class Reserve extends Model
     	// people_numのmax
     	'customer_id' => 'integer',
     	'shop_id'    => 'integer',
-    	'datetime'    => 'required',
+    	// 'datetime'    => 'required',
     	'people_num'  => 'min:1|required',
     );
 }

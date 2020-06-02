@@ -51,6 +51,7 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth:customer'], function
     Route::post('logout',   'Customer\LoginController@logout')->name('customer.logout');
     Route::get('reserve/shop/{shop_id}', 'CustomerController@showReservePage');
     Route::post('reserve/shop/{shop_id}', 'CustomerController@reserve');
+    Route::get('reserveList', 'CustomerController@reserveList');
 });
 
 

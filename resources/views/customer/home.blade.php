@@ -14,45 +14,33 @@
 </form>
 
   <input class="btn btn-danger" type="button"
-  onClick="location.href='/customer/home'" value="予約一覧"
+  onClick="location.href='/customer/reserveList'" value="予約一覧"
   style="position: relative;  left: 800px;
   width: 100px; height: 35px;">
+
   <hr>
 
 <form class="content" action="searchResult" method="post">
   @csrf
   <div style="display:inline-flex">
     <div class="dropdown">
-
-      <select class="btn btn-secondary dropdown-toggle">
-        <option value="指定しない">指定しない</option>
-  {{--    @foreach($stations ?? '' as $station)
-
       <select class="btn btn-secondary dropdown-toggle" name="station">
-      @foreach($stations as $station)
-
-        <option value="{{$station->station}}">{{$station->station}}</option>
-      @endforeach
-
-      --}}
+        @foreach($stations as $station)
+          <option value="{{$station->station}}">{{$station->station}}</option>
+        @endforeach
       </select>
-
     </div>
 
     <br>
 
     <div class="dropdown">
-
-      <select class="btn btn-danger dropdown-toggle" name="tag">
-        <option value="">ジャンルすべて</option>
-
-      @foreach($tags as $tag)
-        <option value="{{$tag->name}}">{{$tag->name}}</option>
-      @endforeach
-
+      <select class="btn btn-danger dropdown-toggle" name="tags[]">
+        @foreach($tags as $tag)
+          <option value="{{$tag->id}}">{{$tag->name}}</option>
+          @endforeach
       </select>
-
     </div>
+
     <br>
 
     <div class="dropdown">
