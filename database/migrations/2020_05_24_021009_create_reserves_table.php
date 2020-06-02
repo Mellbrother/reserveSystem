@@ -17,6 +17,7 @@ class CreateReservesTable extends Migration
             $table->increments('id');
             $table->integer('customer_id');
             $table->integer('shop_id');
+            $table->string('shop_name');
             $table->dateTime('datetime');
             $table->integer('people_num');
             $table->timestamps();
