@@ -36,4 +36,11 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    protected $guraded = array('id');
+    
+    public static $rules = array(
+        'name' => 'string|required',
+        'email' => 'email|required'
+    );
 }

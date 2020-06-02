@@ -21,7 +21,6 @@ Route::resource('shop', 'ShopController');
 Route::resource('reserve', 'ReserveController');
 Route::resource('tag', 'TagController');
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -108,10 +107,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::post('logout',   'Admin\LoginController@logout')->name('admin.logout');
     Route::get('home', 'AdminController@home')->name('admin.home');
     Route::get('findReserve', 'AdminController@findReserveByShopId');
+    Route::post('findReserve', 'AdminController@findReserveByShopId');
     Route::post('destroyReserve', 'AdminController@destroyReserve');
-    Route::post('userEdit', 'AdminController@userEdit');
+    Route::post('customerEdit', 'AdminController@customerEdit');
+    Route::post('clerkEdit', 'AdminController@clerkEdit');
     Route::post('userUpdate', 'AdminController@userUpdate');
-    Route::post('userDelete', 'AdminController@userDelete');
+    Route::post('customerDelete', 'AdminController@customerDelete');
+    Route::post('clerkDelete', 'AdminController@clerkDelete');
     Route::get('createTag', 'AdminController@createTag');
     Route::post('storeTag', 'AdminController@storeTag');
+    Route::post('deleteTag', 'AdminController@deleteTag');
+    Route::get('accountEdit', 'AdminController@accountEdit');
+    Route::post('accountUpdate', 'AdminController@accountUpdate');
 });
