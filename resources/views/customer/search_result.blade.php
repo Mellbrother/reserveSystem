@@ -2,6 +2,7 @@
 
 @section('content')
 @csrf
+<a href="/customer/home">HOME</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -62,15 +63,6 @@
       </select>
     </div>
 
-{{--
-    <div>
-      <select id="ms" name="tag" multiple="multiple">
-        @foreach($tags as $tag)
-          <option value="{{$tag->name}}">{{$tag->name}}</option>
-        @endforeach
-      </select>
-    </div>
---}}
 
     <div>
       <select name="price">
@@ -102,73 +94,3 @@
 @section('footer')
 copyright 2020 GroupA.
 @endsection
-
-
-
-
-
-
-{{--
-  <div >
-    <select id = "ms" class="btn btn-danger dropdown-toggle" name="tag" multiple="multiple">
-      <optgroup label="すべての項目">
-        @foreach($tags as $tag)
-          <option type="checkbox" value="{{$tag->name}}">{{$tag->name}}</option>
-        @endforeach
-      </optgroup>
-    </select>
-
-  </div>
-
-    <div class="dropdown">
-      <select class="btn btn-danger dropdown-toggle" name="tag">
-        <option value="">ジャンルすべて</option>
-      @foreach($tags as $tag)
-        <option value="{{$tag->name}}">{{$tag->name}}</option>
-      @endforeach
-      </select>
-
-    </div>
-
-
-    <div>
-      <button type="button" class = "btn btn-danger dropdown-toggle">
-        <p>ジャンル</p>
-        <div class="default">
-          <table width="180px" id="genre">
-          @foreach($tags as $tags)
-            <tr>
-              <td wigth="50px">{{$tags->name}}</td>
-              <td><input type="checkbox" name="tag[]"
-                value="{{$tags->name}}"></td>
-            </tr>
-          @endforeach
-          </table>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <button type="button"
-          class="btn btn-danger dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false">
-          ジャンル
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdown1">
-          <div class="default">
-            <table width="180px" id="genre">
-            @foreach($tags as $tags)
-              <tr>
-                <td wigth="50px">{{$tags->name}}</td>
-                <td><input type="checkbox" name="tag[]"
-                  value="{{$tags->name}}"></td>
-              </tr>
-            @endforeach
-            </table>
-          </div>
-        </div>
-      </div>
-
-
---}}
