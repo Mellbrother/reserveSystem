@@ -14,7 +14,7 @@
 </form>
 
   <input class="btn btn-danger" type="button"
-  onClick="location.href='http://www.localhost:8000/customer/{{$id}}/reservelist'" value="予約一覧"
+  onClick="location.href='/customer/reserveList'" value="予約一覧"
   style="position: relative;  left: 800px;
   width: 100px; height: 35px;">
 
@@ -24,25 +24,23 @@
   @csrf
   <div style="display:inline-flex">
     <div class="dropdown">
-      <select class="btn btn-secondary dropdown-toggle" name="station">
-      @foreach($stations as $station)
-        <option value="{{$station->station}}">{{$station->station}}</option>
-      @endforeach
+      <select class="btn btn-success dropdown-toggle" name="station">
+        @foreach($stations as $station)
+          <option value="{{$station->station}}">{{$station->station}}</option>
+        @endforeach
       </select>
-
     </div>
 
     <br>
 
     <div class="dropdown">
-      <select class="btn btn-danger dropdown-toggle">
-        <option value="">ジャンルすべて</option>
-      @foreach($tags as $tag)
-        <option value="{{$tag->name}}">{{$tag->name}}</option>
-      @endforeach
+      <select class="btn btn-danger dropdown-toggle" name="tags[]">
+        @foreach($tags as $tag)
+          <option value="{{$tag->id}}">{{$tag->name}}</option>
+          @endforeach
       </select>
-
     </div>
+
     <br>
 
     <div class="dropdown">
@@ -72,111 +70,3 @@
 @section('footer')
 copyright 2020 GroupA.
 @endsection
-
-
-
-
-
-
-
-
-
-
-{{--
-  <button type="button" id="dropdown1"
-    class="btn btn-green dropdown-toggle"
-    data-toggle="dropdown"
-    aria-haspopup="true"
-    aria-expanded="false">
-  場所
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdown1">
-    @foreach($stations as $stations)
-      <a class="dropdown-item" href="http://localhost:8000/customer/{{$id}}/searchResult" wigth="50px">
-        {{$stations->station}} </a>
-    @endforeach
-  </div>
-
-  <div class="dropdown" id="dropdown1">
-    <button type="button"
-      class="btn btn-danger dropdown-toggle"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false">
-    ジャンル
-    </button>
-    <div class="dropdown-menu " aria-labelledby="dropdown1">
-    @foreach($tags as $tags)
-      <a class="dropdown-item" href="#" wigth="50px">
-        <label><input type="checkbox" name="タグ" value="{{$tags->name}}">{{$tags->name}}</label>
-      </a>
-    @endforeach
-    </div>
-  </div>
-
-
---}}
-
-
-
-
-
-{{--
-
-  <br>
-  <div>
-    <button type="button" class = "btn-green" onclick="clickplace()">
-      <p>場所</p>
-      <div class="default">
-        <table width="180px" id="place">
-        @foreach($stations as $stations)
-          <tr>
-            <td wigth="50px">{{$stations->station}}</td>
-            <td><input type="checkbox" name="station[]"
-              value="{{$stations->stations}}"></td>
-          </tr>
-        @endforeach
-        </table>
-      </div>
-
-
-
-    <button type="button" class = "btn-red" onclick="clickgenre()">
-      <p>ジャンル</p>
-      <div class="default">
-        <table width="180px" id="genre">
-        @foreach($tags as $tags)
-          <tr>
-            <td wigth="50px">{{$tags->name}}</td>
-            <td><input type="checkbox" name="tag[]"
-              value="{{$tags->name}}"></td>
-          </tr>
-        @endforeach
-        </table>
-      </div>
-
-
-    <button class = "btn-yellow" type="button">
-      <p>値段</p>
-      <table width="180px">
-      @foreach($prices as $prices)
-          <tr><td hidden="$prices" wigth="50px" onClick="OnbuttonClick();">>{{$prices->lunch_price}}</td></tr>
-
-      @endforeach
-      </table>
-      <div class="">
-          <input type="checkbox" name=lunch_price>
-          <p>昼食</p>
-          <input type="checkbox" name=dinner_price>
-          <p>夕食</p>
-      </div>
-    <br>
-
-    <div class="home">
-      <input class = detail_search type="submit" value="詳細検索">
-    </div>
-  </div>
-
-
-</form>
---}}

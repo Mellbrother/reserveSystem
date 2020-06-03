@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-<a href="http://localhost:8000/clerk/{{$id}}/home">HOME</a>
-<form action="/clerk/{{$id}}/tagStore" method="post">
+<a href="/clerk/home">HOME</a>
+<form action="/clerk/tagStore" method="post">
     @csrf
     @foreach($tags as $tag)
         <label class="mgr-20">

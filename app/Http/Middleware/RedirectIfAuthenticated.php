@@ -18,8 +18,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+      /*login後に/---/loginにアクセスされたときの処理*/
+        if (Auth::guard('customer')->check()) {
+            return redirect('/customer/home');
+        }elseif(Auth::guard('clerk')->check()){
+            return redirect('/clerk/home');
+        }elseif(Auth::guard('admin')->check()){
+            return redirect('/admin/home');
         }
 
         return $next($request);
