@@ -64,10 +64,10 @@
         <tr><td>
             <div class="mgr-40">
                  @php
-                    echo date('d日 h:i', strtotime($item->datetime));
+                    echo date('d日 H:i', strtotime($item->datetime));
                 @endphp
             </div>
-            <td>{{$item->customer_id}}</td>
+            <td>{{$item->customer_name}}</td>
             <td>{{$item->people_num}}</td>
         </tr>
     @endforeach

@@ -7,6 +7,7 @@ use App\Shop;
 use App\Reserve;
 use App\Tag;
 use App\Station;
+use App\Customer;
 use App\Photo;
 use Datetime;
 use DateInterval;
@@ -119,6 +120,8 @@ class CustomerController extends Controller
     {
         $id = Auth::guard('customer')->user()->id;
         $shop_id = session('key');
+        $shop_name = Shop::find($request->shop_id)->name;
+        $customer_name = Customer::find($id)->name;
         $this->validate($request, Reserve::$rules);
         $reserve = new Reserve;
 
@@ -130,7 +133,7 @@ class CustomerController extends Controller
         $datetime = new Datetime($time);
 
         $form = $request->all();
-        $form += ['customer_id' => $id, 'shop_id' => $shop_id, 'datetime' => $datetime];
+        $form += ['customer_id' => $id, 'customer_name' => $customer_name, 'shop_id' => $shop_id, 'shop_name' => $shop_name, 'datetime' => $datetime];
         unset($form['reserve_time']);
         unset($form['date']);
 
