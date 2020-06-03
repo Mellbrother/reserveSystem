@@ -61,7 +61,7 @@ class ClerkController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $shop->fill($form)->save();
-        return redirect('/clerk/'.$id.'/home');
+        return redirect('/clerk/home');
     }
 
     public function shopEdit(){

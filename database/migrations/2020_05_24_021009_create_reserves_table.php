@@ -16,6 +16,7 @@ class CreateReservesTable extends Migration
         Schema::create('reserves', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id');
+            $table->string('customer_name');
             $table->integer('shop_id');
             $table->string('shop_name');
             $table->dateTime('datetime');

@@ -14,6 +14,7 @@ class ReservesTableSeeder extends Seeder
     {
       $param=[
         'customer_id' => 2,
+        'customer_name' => '',
         'shop_id' => 1,
         'shop_name' => '',
         'datetime' => '2020-05-30 18:00:00',
@@ -23,6 +24,7 @@ class ReservesTableSeeder extends Seeder
 
       $param=[
         'customer_id' => 3,
+        'customer_name' => '',
         'shop_id' => 1,
         'shop_name' => '',
         'datetime' => '2020-06-03 11:30:00',
@@ -32,6 +34,7 @@ class ReservesTableSeeder extends Seeder
 
       $param=[
         'customer_id' => 5,
+        'customer_name' => '',
         'shop_id' => 3,
         'shop_name' => '',
         'datetime' => '2020-05-28 20:00:00',
