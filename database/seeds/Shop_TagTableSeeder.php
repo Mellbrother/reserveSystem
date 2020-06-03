@@ -19,7 +19,7 @@ class Shop_TagTableSeeder extends Seeder
       DB::table('shop_tag')->insert($param);
 
       $param=[
-        'shop_id' => 2,
+        'shop_id' => 1,
         'tag_id' => 4,
       ];
       DB::table('shop_tag')->insert($param);
@@ -43,13 +43,13 @@ class Shop_TagTableSeeder extends Seeder
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 6,
+        'shop_id' => 5,
         'tag_id' => 2,
       ];
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 7,
+        'shop_id' => 5,
         'tag_id' => 3,
       ];
       DB::table('shop_tag')->insert($param);
@@ -73,7 +73,7 @@ class Shop_TagTableSeeder extends Seeder
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 11,
+        'shop_id' => 10,
         'tag_id' => 1,
       ];
       DB::table('shop_tag')->insert($param);
@@ -97,13 +97,13 @@ class Shop_TagTableSeeder extends Seeder
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 15,
+        'shop_id' => 14,
         'tag_id' => 7,
       ];
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 16,
+        'shop_id' => 14,
         'tag_id' => 1,
       ];
       DB::table('shop_tag')->insert($param);
@@ -121,7 +121,7 @@ class Shop_TagTableSeeder extends Seeder
       DB::table('shop_tag')->insert($param);
         
       $param=[
-        'shop_id' => 19,
+        'shop_id' => 18,
         'tag_id' => 5,
       ];
       DB::table('shop_tag')->insert($param);
