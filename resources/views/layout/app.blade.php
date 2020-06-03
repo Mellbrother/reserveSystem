@@ -719,14 +719,16 @@ $(function() {
 		.mgr-40{margin-left: 40px;}
 	</style>
 
-	<title>仮レイアウト</title>
+
+<title>予約アプリ</title>
+
 </head>
 <body>
 	@section('navbar')
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="navbar-nav">
-			<a type="button" class="nav-item nav-link active" onClick="location.href='/'">予約アプリ</a>
-
+			<h3 style="color:white; font-family:"sans-serif";">予約アプリ</h3>
+			<div class="helloName" style="position:absolute; top:10px; left:50%;">
 				@if(Auth::guard('customer')->check())
 						<p>こんにちは、{{ Auth::guard('customer')->user()->name }}さん</p>
 				@elseif(Auth::guard('clerk')->check())
@@ -734,25 +736,29 @@ $(function() {
 				@elseif(Auth::guard('admin')->check())
 						<p>こんにちは、{{ Auth::guard('admin')->user()->name }}さん</p>
 				@endif
+			</div>
 				{{-- 各ユーザーログアウトのための追記--}}
-							@if(Auth::guard('customer')->check())
-								<a class="logout" href={{ route('customer.logout') }} onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">
-									Logout
-								<form id='logout-form' action="{{route('customer.logout')}}" method="POST" style="display: none;">
-							@elseif(Auth::guard('clerk')->check())
-								<a class="logout" href={{ route('clerk.logout') }} onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">
-									Logout
-								<form id='logout-form' action="{{route('clerk.logout')}}" method="POST" style="display: none;">
-							@elseif(Auth::guard('admin')->check())
-							<a class="logout" href={{ route('admin.logout') }} onclick="event.preventDefault();
-							document.getElementById('logout-form').submit();">
-									Logout
-							<form id='logout-form' action="{{route('admin.logout')}}" method="POST" style="display: none;">
-							@endif
-				    @csrf
+				<div class="logout" style="position:absolute; top:10px; left:90%;">
+					@if(Auth::guard('customer')->check())
+						<a class="logout" href={{ route('customer.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+							Logout
+						<form id='logout-form' action="{{route('customer.logout')}}" method="POST" style="display: none;">
+					@elseif(Auth::guard('clerk')->check())
+						<a class="logout" href={{ route('clerk.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+							Logout
+						<form id='logout-form' action="{{route('clerk.logout')}}" method="POST" style="display: none;">
+					@elseif(Auth::guard('admin')->check())
+						<a class="logout" href={{ route('admin.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+								Logout
+						<form id='logout-form' action="{{route('admin.logout')}}" method="POST" style="display: none;">
+					@endif
+					@csrf
 					</form>
+				</div>
+
 		</div>
 			</a>
 	</nav>
