@@ -9,7 +9,7 @@ integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706t
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
 body{font-size:20px; color:#999; margin:5px; color: black;}
 .content{margin:0px 0px; text-align:left;}
-li{list-style-type: none; display: inline-block; margin-right: 50px; }
+li{list-style-type: none; display: inline-block; margin-right: 50px; color: blue; }
 .category{margin: 50px; padding: 0px;}
 .mgr-20{margin-left: 20px;}
 .mgr-40{margin-left: 40px;}

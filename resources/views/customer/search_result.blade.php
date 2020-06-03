@@ -2,6 +2,7 @@
 
 @section('content')
 @csrf
+<a href="/customer/home">HOME</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
