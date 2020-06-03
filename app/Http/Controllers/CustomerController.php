@@ -34,8 +34,6 @@ class CustomerController extends Controller
 
     public function showSearchResult(Request $request)
     {
-
-
       if ($request->name != null){
         $shops = Shop::where('name', 'like', '%' .  $request->name . '%')->get();
       } else {
@@ -46,8 +44,13 @@ class CustomerController extends Controller
           preg_match('/(\d+)~(\d+)/', $request->price, $result);
           $min_price = $result[1];
           $max_price = $result[2];
-          $shops = $shops->lunchMinPrice($min_price)
-                      ->lunchMaxPrice($max_price);
+          if($request->timezone == '昼食'){
+            $shops = $shops->lunchMinPrice($min_price)
+                        ->lunchMaxPrice($max_price);
+          } else{
+            $shops = $shops->dinnerMinPrice($min_price)
+                        ->dinnerMaxPrice($max_price);
+          }
         }
         $shops = $shops->get();
 

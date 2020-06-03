@@ -3,59 +3,19 @@
 @section('content')
 @csrf
 <a href="/customer/home">HOME</a>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-
-        <th>店</th>
-        <th>住所</th>
-        <th>開店</th>
-        <th>閉店</th>
-        <th>昼食</th>
-        <th>夕食</th>
-        <th>駅</th>
-        <th>店までの時間</th>
-        <th>タグ</th>
-      </tr>
-  </thead>
-
-  @foreach($shops as $shop)
-    <tr class="table-success">
-      <td><a href="/customer/shop/{{$shop->id}}">
-        {{$shop->name}}</a></td>
-      <td class="font-color">{{$shop->place_address}}</td>
-      <td class="font-color">{{$shop->open}}</td>
-      <td class="font-color">{{$shop->close}}</td>
-      <td class="font-color">{{$shop->lunch_price}}</td>
-      <td class="font-color">{{$shop->dinner_price}}</td>
-      <td class="font-color">{{$shop->station}}</td>
-      <td class="font-color">{{$shop->walk_minute}}</td>
-      <td>
-        <ul>
-          @foreach($shop->tags as $tag)
-            <li class="font-color">{{$tag->name}}</li>
-          @endforeach
-        </ul>
-      </td>
-    </tr>
-  @endforeach
-
-</table>
-
-<hr>
 
 <form class="content" action="searchResult" method="post">
   @csrf
   <div style="display:inline-flex">
-    <div>
-      <select class="ms" name="station">
+    <div style="margin-top: 45px;">
+      <select name="station" id="down" class="selectpicker">
       @foreach($stations as $station)
         <option value="{{$station->station}}">{{$station->station}}</option>
       @endforeach
       </select>
     </div>
 
-    <div>
+    <div style="margin-top: 45px; margin-left: 10px;">
       <select id="ms" name="tags[]" multiple="multiple">
         @foreach($tags as $tag)
           <option value="{{$tag->id}}">{{$tag->name}}</option>
@@ -63,8 +23,11 @@
       </select>
     </div>
 
-
-    <div>
+    <div style="margin-left: 10px;">
+      <p>
+        <input type="radio" name="timezone" value="昼食">昼食
+        <input type="radio" name="timezone" value="夕食">夕食
+      </p>
       <select name="price">
         <option value="">¥こだわらない</option>
         <option value="500~1000">500~1000円</option>
@@ -83,10 +46,51 @@
 
     <br>
 
-    <div class="detail">
+    <div class="detail" style="margin-top: 30px; margin-left: 10px;">
       <button type="submit" class="btn btn-primary">再検索</button>
     </div>
   </div>
+
+  <br>
+
+  <table class="table" style="margin-top: 30px;">
+    <thead class="thead-dark">
+      <tr>
+
+          <th>店</th>
+          <th>住所</th>
+          <th>開店</th>
+          <th>閉店</th>
+          <th>昼食</th>
+          <th>夕食</th>
+          <th>駅</th>
+          <th>店までの時間</th>
+          <th>タグ</th>
+        </tr>
+    </thead>
+
+    @foreach($shops as $shop)
+      <tr class="table-success">
+        <td><a href="/customer/shop/{{$shop->id}}">
+          {{$shop->name}}</a></td>
+        <td class="font-color">{{$shop->place_address}}</td>
+        <td class="font-color">{{$shop->open}}</td>
+        <td class="font-color">{{$shop->close}}</td>
+        <td class="font-color">{{$shop->lunch_price}}</td>
+        <td class="font-color">{{$shop->dinner_price}}</td>
+        <td class="font-color">{{$shop->station}}</td>
+        <td class="font-color">{{$shop->walk_minute}}</td>
+        <td>
+          <ul>
+            @foreach($shop->tags as $tag)
+              <li class="font-color">{{$tag->name}}</li>
+            @endforeach
+          </ul>
+        </td>
+      </tr>
+    @endforeach
+
+  </table>
 
 </form>
 @endsection
