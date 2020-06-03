@@ -8,6 +8,7 @@ use App\Reserve;
 use App\Tag;
 use App\Station;
 use App\Customer;
+use App\Photo;
 use Datetime;
 use DateInterval;
 use Dateperiod;
@@ -85,7 +86,8 @@ class CustomerController extends Controller
         $shop = Shop::where('id', $shop_id)->first();
         $param = [
           'shop_id' => $shop_id,
-          'shop' => $shop
+          'shop' => $shop,
+
         ];
         return view('customer.shop_detail', $param);
     }

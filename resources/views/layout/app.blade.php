@@ -2,12 +2,13 @@
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css" text="text/css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+
 <style>
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
 body{font-size:20px; color:#999; margin:5px; color: black;}
 .content{margin:0px 0px; text-align:left;}
-li{list-style-type: none; display: inline-block; margin-right: 50px; }
+li{list-style-type: none; display: inline-block; margin-right: 50px; color: blue; }
 .category{margin: 50px; padding: 0px;}
 .mgr-20{margin-left: 20px;}
 .mgr-40{margin-left: 40px;}
@@ -24,15 +25,6 @@ hr{
 
 .dropdown {
 	position:relative;
-}
-
-.detail_search {
-	position: absolute;
-	top:200px;
-	left: 200px;
-	width: 200px;
-	height: 200px;
-	background-color: red;
 }
 
 label {
@@ -216,7 +208,8 @@ label:hover {
 <script src="http://web-designer.cman.jp/freejs/cmanCalendar_v093.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="jquery.multiple.select.js"></script>
-<script type="text/javascript" src="js/genre.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </script>
 <script>
@@ -702,10 +695,18 @@ $(function() {
 
  });
 
+ // スライドの停止
+  function stop_slide() {
+    jQuery('#sampleCarousel').carousel('pause');
+    alert('スライドを停止しました');
+  }
 
+  // 任意の画像へ移動
+  function carousel_move(no) {
+    jQuery('#sampleCarousel').carousel(no);
+  }
 
 </script>
-
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<style>
@@ -719,14 +720,15 @@ $(function() {
 	</style>
 
 
-	<title>仮レイアウト</title>
+<title>予約アプリ</title>
+
 </head>
 <body>
 	@section('navbar')
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 		<div class="navbar-nav">
-			<a type="button" class="nav-item nav-link active" onClick="location.href='/'">予約アプリ</a>
-
+			<h3 style="color:white; font-family:"sans-serif";">予約アプリ</h3>
+			<div class="helloName" style="position:absolute; top:10px; left:50%;">
 				@if(Auth::guard('customer')->check())
 						<p>こんにちは、{{ Auth::guard('customer')->user()->name }}さん</p>
 				@elseif(Auth::guard('clerk')->check())
@@ -734,25 +736,29 @@ $(function() {
 				@elseif(Auth::guard('admin')->check())
 						<p>こんにちは、{{ Auth::guard('admin')->user()->name }}さん</p>
 				@endif
+			</div>
 				{{-- 各ユーザーログアウトのための追記--}}
-							@if(Auth::guard('customer')->check())
-								<a class="logout" href={{ route('customer.logout') }} onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">
-									Logout
-								<form id='logout-form' action="{{route('customer.logout')}}" method="POST" style="display: none;">
-							@elseif(Auth::guard('clerk')->check())
-								<a class="logout" href={{ route('clerk.logout') }} onclick="event.preventDefault();
-								document.getElementById('logout-form').submit();">
-									Logout
-								<form id='logout-form' action="{{route('clerk.logout')}}" method="POST" style="display: none;">
-							@elseif(Auth::guard('admin')->check())
-							<a class="logout" href={{ route('admin.logout') }} onclick="event.preventDefault();
-							document.getElementById('logout-form').submit();">
-									Logout
-							<form id='logout-form' action="{{route('admin.logout')}}" method="POST" style="display: none;">
-							@endif
-				    @csrf
+				<div class="logout" style="position:absolute; top:10px; left:90%;">
+					@if(Auth::guard('customer')->check())
+						<a class="logout" href={{ route('customer.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+							Logout
+						<form id='logout-form' action="{{route('customer.logout')}}" method="POST" style="display: none;">
+					@elseif(Auth::guard('clerk')->check())
+						<a class="logout" href={{ route('clerk.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+							Logout
+						<form id='logout-form' action="{{route('clerk.logout')}}" method="POST" style="display: none;">
+					@elseif(Auth::guard('admin')->check())
+						<a class="logout" href={{ route('admin.logout') }} onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+								Logout
+						<form id='logout-form' action="{{route('admin.logout')}}" method="POST" style="display: none;">
+					@endif
+					@csrf
 					</form>
+				</div>
+
 		</div>
 			</a>
 	</nav>
