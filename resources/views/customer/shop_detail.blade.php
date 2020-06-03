@@ -26,7 +26,29 @@
   </tr>
 </table>
 
-<p>写真</p>
+<div id="sampleCarousel" class="carousel slide" data-ride="carousel" style="width:400px; height:500px;">
+    <ol class="carousel-indicators">
+      <li class="active" data-target="#sampleCarousel" data-slide-to="0"></li>
+      <li data-target="#sampleCarousel" data-slide-to="1"></li>
+      <li data-target="#sampleCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox"style="width:100%; height:100%;">
+      <div class="item active">
+        <img src="/storage/store_photo/izakaya1_man.png" alt="居酒屋1">
+      </div>
+      <div class="item">
+        <img src="/storage/store_photo/izakaya2_tatemono.png" alt="居酒屋1">
+      </div>
+    </div>
+    <a class="left carousel-control" href="#sampleCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">前へ</span>
+	</a>
+    <a class="right carousel-control" href="#sampleCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">次へ</span>
+	</a>
+  </div>
 
 <input class="btn btn-danger" type="button"
 onClick="location.href='/customer/reserve/shop/{{$shop_id}}'" value="予約画面へ"

@@ -3,6 +3,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css" text="text/css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+
 <style>
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
 body{font-size:20px; color:#999; margin:5px; color: black;}
@@ -217,6 +219,8 @@ label:hover {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="jquery.multiple.select.js"></script>
 <script type="text/javascript" src="js/genre.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </script>
 <script>
@@ -701,6 +705,17 @@ $(function() {
         });
 
  });
+
+ // スライドの停止
+  function stop_slide() {
+    jQuery('#sampleCarousel').carousel('pause');
+    alert('スライドを停止しました');
+  }
+
+  // 任意の画像へ移動
+  function carousel_move(no) {
+    jQuery('#sampleCarousel').carousel(no);
+  }
 
 
 
