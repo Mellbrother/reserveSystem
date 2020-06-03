@@ -2,7 +2,6 @@
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css" text="text/css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
 
 <style>
@@ -26,15 +25,6 @@ hr{
 
 .dropdown {
 	position:relative;
-}
-
-.detail_search {
-	position: absolute;
-	top:200px;
-	left: 200px;
-	width: 200px;
-	height: 200px;
-	background-color: red;
 }
 
 label {
@@ -218,7 +208,6 @@ label:hover {
 <script src="http://web-designer.cman.jp/freejs/cmanCalendar_v093.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="jquery.multiple.select.js"></script>
-<script type="text/javascript" src="js/genre.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -717,10 +706,7 @@ $(function() {
     jQuery('#sampleCarousel').carousel(no);
   }
 
-
-
 </script>
-
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<style>
@@ -734,7 +720,8 @@ $(function() {
 	</style>
 
 
-	<title>予約アプリ</title>
+<title>予約アプリ</title>
+
 </head>
 <body>
 	@section('navbar')
