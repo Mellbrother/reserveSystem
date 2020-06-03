@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('content')
+<a href="/customer/home">HOME</a>
 <form action="/customer/reserve/shop/{{$shop_id}}" method="post">
   @csrf
     <div class="dropdown">

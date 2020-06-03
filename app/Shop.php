@@ -39,4 +39,9 @@ class Shop extends Model
       //belongsToManyの処理
       return $this->belongsToMany('App\Tag', 'shop_tag');
     }
+
+    public function storePhotos()
+    {
+      return $this->hasMany('App\Photo');
+    }
 }

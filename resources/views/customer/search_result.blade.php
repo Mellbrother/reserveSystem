@@ -2,6 +2,7 @@
 
 @section('content')
 @csrf
+<a href="/customer/home">HOME</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -20,7 +21,6 @@
 
   @foreach($shops as $shop)
     <tr class="table-success">
-      <td class="font-color">{{$shop->id}}</td>
       <td><a href="/customer/shop/{{$shop->id}}">
         {{$shop->name}}</a></td>
       <td class="font-color">{{$shop->place_address}}</td>
