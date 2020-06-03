@@ -37,7 +37,7 @@ class CustomerController extends Controller
 
 
       if ($request->name != null){
-        $shops = Shop::where('name', $request->name)->get();
+        $shops = Shop::where('name', 'like', '%' .  $request->name . '%')->get();
       } else {
         $shops = Shop::station($request->station);
 
