@@ -1,17 +1,19 @@
 <html>
 <head>
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+
 
 <style>
 .footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
-body{font-size:20px; color:#999; margin:5px; color: black;}
+body{font-size:20px; color:#999; margin:5px; }
 .content{margin:0px 0px; text-align:left;}
-li{list-style-type: none; display: inline-block; margin-right: 50px; color: blue; }
+li{list-style-type: none; display: inline-block; margin-right: 50px; color: black; }
 .category{margin: 50px; padding: 0px;}
 .mgr-20{margin-left: 20px;}
 .mgr-40{margin-left: 40px;}
+
 
 
 hr{
@@ -20,7 +22,7 @@ hr{
 
 .btn{
   width:200px;
-  height:45px;
+  height:50px;
 }
 
 .dropdown {
@@ -198,6 +200,17 @@ label:hover {
 .ms-drop .ms-no-results {
     display: none;
 }
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-color: gray;
+    background-size: 100%, 100%;
+		border-radius: 50%;
+}
+
 
 </style>
 
@@ -695,29 +708,9 @@ $(function() {
 
  });
 
- // スライドの停止
-  function stop_slide() {
-    jQuery('#sampleCarousel').carousel('pause');
-    alert('スライドを停止しました');
-  }
-
-  // 任意の画像へ移動
-  function carousel_move(no) {
-    jQuery('#sampleCarousel').carousel(no);
-  }
 
 </script>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	<style>
-		.footer{color:gray; opacity:0.7; color:#ccc; text-align:right; font-size:10px; margin:10px;}
-		body{font-size:20px; color:#999; margin:5px;}
-		.content{margin:0px 0px; text-align:left;}
-		li{list-style-type: none; display: inline-block; margin-right: 50px; }
-		.category{margin: 50px; padding: 0px;}
-		.mgr-20{margin-left: 20px;}
-		.mgr-40{margin-left: 40px;}
-	</style>
 
 
 <title>予約アプリ</title>

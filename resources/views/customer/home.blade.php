@@ -24,7 +24,7 @@
   @csrf
   <div style="display:inline-flex">
     <div class="dropdown">
-      <select class="btn btn-secondary dropdown-toggle" name="station">
+      <select class="btn btn-success dropdown-toggle" name="station">
         @foreach($stations as $station)
           <option value="{{$station->station}}">{{$station->station}}</option>
         @endforeach

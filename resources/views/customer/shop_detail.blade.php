@@ -2,6 +2,10 @@
 
 @section('content')
 <a href="/customer/home">HOME</a>
+<input class="btn btn-danger" type="button"
+    onClick="location.href='/customer/reserve/shop/{{$shop_id}}'" value="予約画面へ"
+    style="position: relative; left: 800px;
+    width: 200px; height: 50px; margin-bottom: 10px;">
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -27,7 +31,39 @@
   </tr>
 </table>
 
-<div id="sampleCarousel" class="carousel slide" data-ride="carousel"
+<div id="example-2" class="carousel slide " data-touch="true" data-ride="carousel" style="left:200px; width:600px; height:500px;" >
+  <div class="carousel-inner" >
+    @forelse($shop->storePhotos as $photo)
+      @if($loop->first)
+        <div class="carousel-item active">
+          <img src= {{$photo->getData()}}>
+        </div>
+      @else
+        <div class="carousel-item">
+          <img src= {{$photo->getData()}}>
+        </div>
+        <a class="carousel-control-prev" href="#example-2" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#example-2" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      @endif
+
+    @empty
+      <div class="carousel-item active">
+        <img src= "/storage/store_photo/no_image.jpg" alt="no-image">
+      </div>
+    @endforelse
+
+  </div>
+</div>
+
+
+{{--
+  <div id="sampleCarousel" class="carousel slide" data-ride="carousel"
     style="position: relative;
         width: 480px; /* 領域の幅を指定 */
         height: 480px; /* 領域の高さを指定 */
@@ -75,11 +111,9 @@
 		<span class="sr-only">次へ</span>
 	</a>
   </div>
+--}}
 
-<input class="btn btn-danger" type="button"
-onClick="location.href='/customer/reserve/shop/{{$shop_id}}'" value="予約画面へ"
-style="position: relative; left: 800px;
-width: 200px; height: 50px;">
+
 @endsection
 
 @section('footer')
