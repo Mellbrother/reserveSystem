@@ -21,8 +21,8 @@ class CreateShopsTable extends Migration
             $table->integer('lunch_price');
             $table->integer('dinner_price');
             $table->integer('seat_num');
-            $table->string('open');
-            $table->string('close');
+            $table->datetime('open');
+            $table->datetime('close');
             $table->integer('average_stay_minute');
             $table->string('station');
             $table->integer('walk_minute');
