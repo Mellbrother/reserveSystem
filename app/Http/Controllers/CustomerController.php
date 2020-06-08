@@ -160,4 +160,5 @@ class CustomerController extends Controller
         ];
       return view('customer.reserve_list', $param);
     }
+
 }
